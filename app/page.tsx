@@ -1,7 +1,14 @@
+import Hero from "@/components/ui/home/Hero";
+import Navbar from "@/components/ui/layout/Navbar";
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#12091f] text-white">
-      <h1>Itoi Birthday Website</h1>
+    <main>
+
+      <Navbar />
+
+      <Hero />
+
     </main>
   );
 }
