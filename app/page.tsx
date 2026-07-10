@@ -1,14 +1,11 @@
 import Hero from "@/components/ui/home/Hero";
-import Navbar from "@/components/ui/layout/Navbar";
+import FeaturedSection from "@/components/ui/home/FeaturedSection";
 
 export default function Home() {
   return (
     <main>
-
-      <Navbar />
-
       <Hero />
-
+      <FeaturedSection />
     </main>
   );
 }

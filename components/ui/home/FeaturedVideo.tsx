@@ -1,0 +1,124 @@
+"use client";
+
+import Image from "next/image";
+import { Play, X } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import { featuredVideo } from "@/data/featuredVideo";
+
+export default function FeaturedVideo() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleEscape);
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen]);
+
+  return (
+    <>
+      <article className="group overflow-hidden rounded-3xl border border-[#79cef2]/15 bg-[#151e26]/80 transition duration-300 hover:-translate-y-1 hover:border-[#79cef2]/30">
+        <button
+            type="button"
+            onClick={() => setIsOpen(true)}
+            className="relative block aspect-video w-full overflow-hidden bg-[#0b1117]"
+            aria-label={`Play ${featuredVideo.title}`}
+        >
+          <Image
+            src={featuredVideo.thumbnail}
+            alt={featuredVideo.title}
+            fill
+            sizes="(max-width: 1024px) 100vw, 33vw"
+            className="object-contain p-3 transition duration-500 group-hover:scale-105"
+          />
+
+          <div className="absolute inset-0 bg-black/20 transition group-hover:bg-black/35" />
+
+          <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#42aee2] text-[#081017] shadow-lg transition group-hover:scale-110">
+            <Play size={25} className="ml-1" />
+          </span>
+        </button>
+
+        <div className="p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#79cef2]">
+            Featured Video
+          </p>
+
+          <h3 className="mt-3 text-xl font-bold text-[#f7fbfd]">
+            {featuredVideo.title}
+          </h3>
+
+          <p className="mt-3 text-sm leading-6 text-[#9eb0ba]">
+            {featuredVideo.description}
+          </p>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen(true)}
+            className="mt-6 inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-[#42aee2] px-5 text-sm font-semibold text-[#081017] transition hover:bg-[#79cef2]"
+          >
+            <Play size={17} />
+            Watch Video
+          </button>
+        </div>
+      </article>
+
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label={featuredVideo.title}
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setIsOpen(false);
+            }
+          }}
+        >
+          <div className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-[#79cef2]/20 bg-[#0b1117] shadow-2xl">
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close video player"
+              className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/70 text-white transition hover:bg-black"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="aspect-video">
+              <iframe
+                src={`https://www.youtube.com/embed/${featuredVideo.videoId}?autoplay=1`}
+                title={featuredVideo.title}
+                className="h-full w-full"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            <div className="p-6">
+              <h2 className="text-2xl font-bold text-[#f7fbfd]">
+                {featuredVideo.title}
+              </h2>
+
+              <p className="mt-3 text-sm leading-6 text-[#9eb0ba]">
+                {featuredVideo.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

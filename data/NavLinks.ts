@@ -1,22 +1,22 @@
 export const navLinks = [
   {
     label: "Home",
-    href: "#home",
+    href: "/",
   },
   {
     label: "About",
-    href: "#about",
+    href: "/about",
   },
   {
-    label: "Schedule",
-    href: "#schedule",
+    label: "Archives",
+    href: "/archives",
+  },
+  {
+    label: "Artwork",
+    href: "/artwork",
   },
   {
     label: "Music",
-    href: "#music",
-  },
-  {
-    label: "Gallery",
-    href: "#gallery",
+    href: "/music",
   },
 ];

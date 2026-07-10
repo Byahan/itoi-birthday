@@ -1,53 +1,68 @@
-import LiveStatus from "./LiveStatus";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import LiveStatus from "./LiveStatus";
+import NextStream from "./NextStream";
+import ChannelStats from "./ChannelStats";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen px-8 pt-28">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 lg:grid-cols-[320px_1fr]">
+    <section id="home" className="px-6 pb-8 pt-28 md:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[320px_1fr_500px]">
+
+        {/* Left Panel */}
         <div className="space-y-5">
           <LiveStatus />
-
-          <div className="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-md">
-            <p className="text-xs uppercase tracking-[0.3em] text-purple-200">
-              Next Stream
-            </p>
-
-            <h3 className="mt-3 text-2xl font-bold">
-              Birthday Countdown
-            </h3>
-
-            <div className="mt-5 grid grid-cols-4 gap-2 text-center">
-              {["02", "15", "10", "23"].map((item, index) => (
-                <div key={index} className="rounded-2xl bg-white/15 p-3">
-                  <p className="text-2xl font-bold">{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <NextStream />
         </div>
 
+        {/* Center Panel */}
         <div className="text-center lg:text-left">
-          <p className="text-2xl font-semibold text-pink-300">
-            Welcome to
+
+          <p className="uppercase tracking-[0.35em] text-[#79cef2] text-sm font-semibold">
+            Neo-Porte Gen 2
           </p>
 
-          <h1 className="mt-3 text-6xl font-black tracking-tight md:text-8xl">
+          <h1 className="mt-5 text-7xl md:text-8xl font-black leading-none">
             Itoi Toi
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-white/70">
-            A cozy birthday website filled with memories, wishes, music,
-            and little surprises for Itoi Toi.
+          <p className="mt-8 max-w-xl leading-8 text-[#9eb0ba]">
+            Welcome to a special website dedicated to celebrating
+            Itoi Toi's birthday. Explore memories, messages,
+            music, and many little surprises prepared with love.
           </p>
 
-          <div className="mt-8 flex justify-center gap-4 lg:justify-start">
-            <Button size="lg">Explore Website</Button>
-            <Button size="lg" variant="secondary">
+          <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
+            <Button size="lg">
+              Explore
+            </Button>
+
+            <Button
+              size="lg"
+              variant="secondary"
+            >
               Send Wishes
             </Button>
           </div>
+
         </div>
+
+        {/* Right Panel */}
+        <div className="hidden flex-col items-center lg:flex">
+          <Image
+            src="/images/itoi.png"
+            alt="Itoi Toi"
+            width={500}
+            height={700}
+            priority
+            className="pointer-events-none h-auto w-full max-w-[500px] select-none"
+          />
+
+          <div className="mt-2 w-full max-w-[440px]">
+            <ChannelStats />
+          </div>
+        </div>
+
       </div>
     </section>
   );
