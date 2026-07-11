@@ -46,7 +46,7 @@ export default function MusicPlayerBar() {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[100] border-t border-[#79cef2]/15 bg-[#0b1117]/95 shadow-[0_-12px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+    <div className="fixed inset-x-0 bottom-0 z-[100] border-t border-[#48a9f8]/15 bg-[#f8fbff]/95 shadow-[0_-12px_40px_rgba(0,0,0,0.15)] backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 py-3 md:px-8">
         <input
           type="range"
@@ -55,7 +55,7 @@ export default function MusicPlayerBar() {
           value={currentTime}
           onChange={(event) => seek(Number(event.target.value))}
           aria-label="Song progress"
-          className="mb-3 h-1 w-full cursor-pointer accent-[#42aee2]"
+          className="mb-3 h-1 w-full cursor-pointer accent-[#48a9f8]"
         />
 
         <div className="flex items-center gap-4">
@@ -71,11 +71,11 @@ export default function MusicPlayerBar() {
             </div>
 
             <div className="min-w-0">
-              <p className="truncate font-bold text-[#f7fbfd]">
+              <p className="truncate font-bold text-[#202b50]">
                 {currentTrack.title}
               </p>
 
-              <p className="truncate text-sm text-[#9eb0ba]">
+              <p className="truncate text-sm text-[#6f7893]">
                 {currentTrack.artist}
               </p>
             </div>
@@ -93,8 +93,8 @@ export default function MusicPlayerBar() {
                 }
                 className={
                     shuffleEnabled
-                    ? "flex h-10 w-10 items-center justify-center rounded-full bg-[#42aee2]/15 text-[#79cef2] transition"
-                    : "flex h-10 w-10 items-center justify-center rounded-full text-[#b9ddec] transition hover:bg-white/5 hover:text-[#79cef2]"
+                    ? "flex h-10 w-10 items-center justify-center rounded-full bg-[#48a9f8]/15 text-[#48a9f8] transition"
+                    : "flex h-10 w-10 items-center justify-center rounded-full text-[#b9ddec] transition hover:bg-white/5 hover:text-[#48a9f8]"
                 }
                 >
                 <Shuffle size={18} />
@@ -104,7 +104,7 @@ export default function MusicPlayerBar() {
               type="button"
               onClick={playPrevious}
               aria-label="Previous song"
-              className="flex h-10 w-10 items-center justify-center rounded-full text-[#b9ddec] hover:bg-white/5 hover:text-[#79cef2]"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-[#b9ddec] hover:bg-white/5 hover:text-[#48a9f8]"
             >
               <SkipBack size={19} />
             </button>
@@ -113,7 +113,7 @@ export default function MusicPlayerBar() {
               type="button"
               onClick={togglePlay}
               aria-label={isPlaying ? "Pause song" : "Play song"}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-[#42aee2] text-[#081017] hover:bg-[#79cef2]"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-[#48a9f8] text-[#081017] hover:bg-[#48a9f8]"
             >
               {isPlaying ? <Pause size={20} /> : <Play size={20} />}
             </button>
@@ -122,19 +122,19 @@ export default function MusicPlayerBar() {
               type="button"
               onClick={playNext}
               aria-label="Next song"
-              className="flex h-10 w-10 items-center justify-center rounded-full text-[#b9ddec] hover:bg-white/5 hover:text-[#79cef2]"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-[#aedcef] hover:bg-white/5 hover:text-[#48a9f8]"
             >
               <SkipForward size={19} />
             </button>
           </div>
 
           <div className="hidden flex-1 items-center justify-end gap-4 md:flex">
-            <span className="text-xs text-[#9eb0ba]">
+            <span className="text-xs text-[#6f7893]">
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>
 
             <div className="flex items-center gap-2">
-              <Volume2 size={17} className="text-[#9eb0ba]" />
+              <Volume2 size={17} className="text-[#6f7893]" />
 
               <input
                 type="range"
@@ -146,7 +146,7 @@ export default function MusicPlayerBar() {
                   setVolume(Number(event.target.value))
                 }
                 aria-label="Volume"
-                className="h-1 w-24 cursor-pointer accent-[#42aee2]"
+                className="h-1 w-24 cursor-pointer accent-[#48a9f8]"
               />
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function MusicPlayerBar() {
             type="button"
             onClick={stop}
             aria-label="Close music player"
-            className="flex h-9 w-9 items-center justify-center rounded-full text-[#9eb0ba] hover:bg-white/5 hover:text-white"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-[#6f7893] hover:bg-white/5 hover:text-[#45c5fa]"
           >
             <X size={18} />
           </button>

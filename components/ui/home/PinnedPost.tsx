@@ -36,12 +36,12 @@ export default function PinnedPost() {
   const visibleImages = images.slice(0, 4);
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#79cef2]/15 bg-[#151e26]/80 transition duration-300 hover:-translate-y-1 hover:border-[#79cef2]/30">
+    <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#f6cfe1] bg-[#fff5fa]/90 shadow-[0_18px_50px_rgba(66,103,145,0.10)] transition duration-300 hover:-translate-y-1 hover:border-[#48a9f8]/30">
       <div className="flex flex-1 flex-col p-6">
         {/* Profile header */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[#79cef2]/20">
+            <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[#48a9f8]/20">
               <Image
                 src={pinnedPost.profileImage}
                 alt={pinnedPost.displayName}
@@ -52,11 +52,11 @@ export default function PinnedPost() {
             </div>
 
             <div className="min-w-0">
-              <p className="truncate font-bold text-[#f7fbfd]">
+              <p className="truncate font-bold text-[#202b50]">
                 {pinnedPost.displayName}
               </p>
 
-              <p className="truncate text-sm text-[#9eb0ba]">
+              <p className="truncate text-sm text-[#6f7893]">
                 {pinnedPost.username}
               </p>
             </div>
@@ -64,12 +64,12 @@ export default function PinnedPost() {
 
           <FaXTwitter
             size={20}
-            className="shrink-0 text-[#79cef2]"
+            className="shrink-0 text-[#48a9f8]"
           />
         </div>
 
         {/* Pinned label */}
-        <div className="mt-5 flex items-center gap-2 text-[#79cef2]">
+        <div className="mt-5 flex items-center gap-2 text-[#ff2383]">
           <Pin size={14} />
 
           <p className="text-xs font-semibold uppercase tracking-[0.22em]">
@@ -78,18 +78,18 @@ export default function PinnedPost() {
         </div>
 
         {/* Post text */}
-        <div className="relative mt-4 max-h-[175px] overflow-hidden">
-          <p className="whitespace-pre-line text-sm leading-7 text-[#d7e2e8]">
+        <div className="relative mt-4 max-h-[250px] overflow-hidden">
+          <p className="whitespace-pre-line text-sm leading-7 text-[#394360]">
             {pinnedPost.text}
           </p>
 
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#151e26] to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t" />
         </div>
 
         {/* Post images */}
         {visibleImages.length > 0 && (
           <div
-            className={`mt-5 grid overflow-hidden rounded-2xl border border-[#79cef2]/10 ${getImageGridClass(
+            className={`mt-5 grid overflow-hidden rounded-2xl border border-[#48a9f8]/10 ${getImageGridClass(
               visibleImages.length,
             )}`}
           >
@@ -105,9 +105,9 @@ export default function PinnedPost() {
                   href={pinnedPost.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group relative overflow-hidden bg-[#0b1117] ${
+                  className={`group relative overflow-hidden bg-[#f8fbff] ${
                     visibleImages.length > 1
-                      ? "border border-[#79cef2]/5"
+                      ? "border border-[#48a9f8]/5"
                       : ""
                   } ${getImageWrapperClass(
                     visibleImages.length,
@@ -147,7 +147,7 @@ export default function PinnedPost() {
             href={pinnedPost.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#79cef2]/20 bg-[#202c36]/70 px-5 text-sm font-semibold text-[#e8f8ff] transition hover:border-[#79cef2]/40 hover:bg-[#42aee2]/15 hover:text-[#79cef2]"
+            className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#ff2383]/20 bg-[#f3f9ff]/70 px-5 text-sm font-semibold text-[#ff2383] transition hover:border-[#ff2383]/40 hover:bg-[#ff62a6]/15 hover:text-[#ff2383]"
           >
             View on X
             <ExternalLink size={16} />

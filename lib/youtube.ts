@@ -1,6 +1,6 @@
 import type {
   ChannelStatistics,
-  UpcomingStream,
+  YouTubeStream,
 } from "@/types/youtube";
 
 interface YouTubeChannelResponse {
@@ -18,11 +18,23 @@ interface YouTubeSearchResponse {
     id: {
       videoId?: string;
     };
-    snippet: {
-      title: string;
-      description: string;
-      thumbnails: {
+  }>;
+}
+
+interface YouTubeVideoResponse {
+  items?: Array<{
+    id: string;
+
+    snippet?: {
+      title?: string;
+      description?: string;
+      liveBroadcastContent?: "live" | "upcoming" | "none";
+
+      thumbnails?: {
         maxres?: {
+          url: string;
+        };
+        standard?: {
           url: string;
         };
         high?: {
@@ -36,13 +48,11 @@ interface YouTubeSearchResponse {
         };
       };
     };
-  }>;
-}
 
-interface YouTubeVideoResponse {
-  items?: Array<{
     liveStreamingDetails?: {
       scheduledStartTime?: string;
+      actualStartTime?: string;
+      actualEndTime?: string;
     };
   }>;
 }
@@ -56,7 +66,7 @@ function decodeYouTubeText(text: string): string {
     .replaceAll("&gt;", ">");
 }
 
-export async function getUpcomingStream(): Promise<UpcomingStream | null> {
+export async function getCurrentOrUpcomingStream(): Promise<YouTubeStream | null> {
   const apiKey = process.env.YOUTUBE_API_KEY;
   const channelId = process.env.YOUTUBE_CHANNEL_ID;
 
@@ -72,10 +82,9 @@ export async function getUpcomingStream(): Promise<UpcomingStream | null> {
     const searchParams = new URLSearchParams({
       part: "snippet",
       channelId,
-      eventType: "upcoming",
       type: "video",
       order: "date",
-      maxResults: "1",
+      maxResults: "10",
       key: apiKey,
     });
 
@@ -101,16 +110,17 @@ export async function getUpcomingStream(): Promise<UpcomingStream | null> {
     const searchData =
       (await searchResponse.json()) as YouTubeSearchResponse;
 
-    const searchResult = searchData.items?.[0];
-    const videoId = searchResult?.id.videoId;
+    const videoIds = (searchData.items ?? [])
+      .map((item) => item.id.videoId)
+      .filter((id): id is string => Boolean(id));
 
-    if (!searchResult || !videoId) {
+    if (videoIds.length === 0) {
       return null;
     }
 
     const videoParams = new URLSearchParams({
-      part: "liveStreamingDetails",
-      id: videoId,
+      part: "snippet,liveStreamingDetails",
+      id: videoIds.join(","),
       key: apiKey,
     });
 
@@ -136,32 +146,72 @@ export async function getUpcomingStream(): Promise<UpcomingStream | null> {
     const videoData =
       (await videoResponse.json()) as YouTubeVideoResponse;
 
-    const scheduledStartTime =
-      videoData.items?.[0]?.liveStreamingDetails?.scheduledStartTime;
+    const videos = videoData.items ?? [];
 
-    if (!scheduledStartTime) {
+    const liveVideo = videos.find(
+      (video) =>
+        video.snippet?.liveBroadcastContent === "live" &&
+        Boolean(video.liveStreamingDetails?.actualStartTime) &&
+        !video.liveStreamingDetails?.actualEndTime,
+    );
+
+    const upcomingVideos = videos
+      .filter(
+        (video) =>
+          video.snippet?.liveBroadcastContent === "upcoming" &&
+          Boolean(video.liveStreamingDetails?.scheduledStartTime),
+      )
+      .sort((first, second) => {
+        const firstTime = new Date(
+          first.liveStreamingDetails?.scheduledStartTime ?? 0,
+        ).getTime();
+
+        const secondTime = new Date(
+          second.liveStreamingDetails?.scheduledStartTime ?? 0,
+        ).getTime();
+
+        return firstTime - secondTime;
+      });
+
+    const selectedVideo = liveVideo ?? upcomingVideos[0];
+
+    if (!selectedVideo?.snippet) {
       return null;
     }
 
-    const thumbnails = searchResult.snippet.thumbnails;
+    const thumbnails = selectedVideo.snippet.thumbnails;
 
     const thumbnail =
-      thumbnails.maxres?.url ??
-      thumbnails.high?.url ??
-      thumbnails.medium?.url ??
-      thumbnails.default?.url ??
+      thumbnails?.maxres?.url ??
+      thumbnails?.standard?.url ??
+      thumbnails?.high?.url ??
+      thumbnails?.medium?.url ??
+      thumbnails?.default?.url ??
       "";
 
+    const status: YouTubeStream["status"] =
+      selectedVideo.snippet.liveBroadcastContent === "live"
+        ? "live"
+        : "upcoming";
+
     return {
-      videoId,
-      title: decodeYouTubeText(searchResult.snippet.title),
-      description: decodeYouTubeText(searchResult.snippet.description),
+      videoId: selectedVideo.id,
+      title: decodeYouTubeText(
+        selectedVideo.snippet.title ?? "Itoi Toi Stream",
+      ),
+      description: decodeYouTubeText(
+        selectedVideo.snippet.description ?? "",
+      ),
       thumbnail,
-      scheduledStartTime,
-      url: `https://www.youtube.com/watch?v=${videoId}`,
+      url: `https://www.youtube.com/watch?v=${selectedVideo.id}`,
+      status,
+      scheduledStartTime:
+        selectedVideo.liveStreamingDetails?.scheduledStartTime ?? null,
+      actualStartTime:
+        selectedVideo.liveStreamingDetails?.actualStartTime ?? null,
     };
   } catch (error) {
-    console.error("Unable to retrieve the upcoming stream:", error);
+    console.error("Unable to retrieve stream status:", error);
     return null;
   }
 }

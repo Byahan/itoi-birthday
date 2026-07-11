@@ -6,9 +6,17 @@ import {
   Radio,
 } from "lucide-react";
 
+import { FaTwitch, FaYoutube } from "react-icons/fa";
+import { getActiveStream } from "@/lib/streaming";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { getUpcomingStream } from "@/lib/youtube";
+import { getCurrentOrUpcomingStream } from "@/lib/youtube";
+
+const activeStream = await getActiveStream();
+const youtubeStream = await getCurrentOrUpcomingStream();
+
+const livePlatform = activeStream?.platform;
+const isLive = Boolean(activeStream);
 
 function formatStreamDate(dateString: string): string {
   return new Intl.DateTimeFormat("en-US", {
@@ -31,88 +39,130 @@ function formatStreamTime(dateString: string): string {
 }
 
 export default async function NextStream() {
-  const stream = await getUpcomingStream();
+  const [activeStream, youtubeStream] = await Promise.all([
+    getActiveStream(),
+    getCurrentOrUpcomingStream(),
+  ]);
 
-  if (!stream) {
+  const isLive = Boolean(activeStream);
+
+  if (!activeStream && !youtubeStream) {
     return (
-      <section className="rounded-3xl border border-[#79cef2]/15 bg-[#151e26]/80 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.2)] backdrop-blur-md">
-        <div className="flex items-center gap-2 text-[#79cef2]">
-          <Radio size={16} />
+      <section className="rounded-3xl border border-[#48a9f8]/15 bg-[#ffffff]/80 p-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#48a9f8]">
+          Next Stream
+        </p>
 
-          <p className="text-xs font-semibold uppercase tracking-[0.3em]">
-            Next Stream
-          </p>
-        </div>
-
-        <h3 className="mt-4 text-2xl font-bold tracking-tight text-[#f7fbfd]">
+        <h3 className="mt-4 text-2xl font-bold text-[#202b50]">
           No stream scheduled
         </h3>
-
-        <p className="mt-3 text-sm leading-6 text-[#9eb0ba]">
-          There is currently no upcoming stream listed on Itoi Toi&apos;s
-          YouTube channel. Please check again later.
-        </p>
       </section>
     );
   }
 
+  const title = activeStream?.title ?? youtubeStream!.title;
+  const thumbnail =
+    activeStream?.thumbnail ?? youtubeStream!.thumbnail;
+  const url = activeStream?.url ?? youtubeStream!.url;
+
   return (
-    <article className="overflow-hidden rounded-3xl border border-[#79cef2]/15 bg-[#151e26]/80 shadow-[0_18px_50px_rgba(0,0,0,0.2)] backdrop-blur-md">
+    <article
+      className={
+        isLive
+          ? "overflow-hidden rounded-3xl border border-[#f6cfe1] bg-white/90 shadow-[0_18px_50px_rgba(66,103,145,0.10)]"
+          : "overflow-hidden rounded-3xl border border-[#dceaf5] bg-white/90 shadow-[0_18px_50px_rgba(66,103,145,0.10)]"
+      }
+    >
       <a
-        href={stream.url}
+        href={url}
         target="_blank"
         rel="noopener noreferrer"
         className="group relative block aspect-video overflow-hidden"
       >
         <Image
-          src={stream.thumbnail}
-          alt={stream.title}
+          src={thumbnail}
+          alt={title}
           fill
           sizes="(max-width: 1024px) 100vw, 320px"
           className="object-cover transition duration-500 group-hover:scale-105"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#081017] via-[#081017]/15 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t"/>
 
-        <span className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/10 bg-[#0b1117]/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#e8f8ff] backdrop-blur-md">
-          <Radio size={13} className="text-[#79cef2]" />
-          Next Stream
+        <span
+          className={
+            isLive
+              ? "absolute left-4 top-4 flex items-center gap-2 rounded-full bg-red-500 px-3 py-1.5 text-xs font-semibold uppercase text-white"
+              : "absolute left-4 top-4 rounded-full border border-[#dceaf5] bg-white/90 px-3 py-1.5 text-xs font-semibold uppercase text-[#48a9f8] backdrop-blur-md"
+          }
+        >
+          {isLive ? "LIVE" : "Next Stream"}
         </span>
       </a>
 
       <div className="p-6">
-        <h3 className="line-clamp-2 text-xl font-bold leading-snug text-[#f7fbfd]">
-          {stream.title}
+        {isLive && activeStream && (
+          <div className="flex items-center gap-2 text-sm font-semibold text-[#394360]">
+            {activeStream.platform === "youtube" ? (
+              <FaYoutube />
+            ) : (
+              <FaTwitch className="text-purple-400" />
+            )}
+
+            <span>
+              Live on{" "}
+              {activeStream.platform === "youtube"
+                ? "YouTube"
+                : "Twitch"}
+            </span>
+          </div>
+        )}
+
+        <h3 className="mt-3 line-clamp-2 text-xl font-bold text-[#202b50]">
+          {title}
         </h3>
 
-        <div className="mt-4 space-y-2 text-sm text-[#9eb0ba]">
-          <div className="flex items-center gap-2">
-            <CalendarDays size={16} className="text-[#79cef2]" />
+        {!isLive && youtubeStream?.scheduledStartTime && (
+          <div className="mt-4 space-y-2 text-sm text-[#6f7893]">
+            <div className="flex items-center gap-2">
+              <CalendarDays size={16} className="text-[#48a9f8]" />
+              <span>
+                {formatStreamDate(
+                  youtubeStream.scheduledStartTime,
+                )}
+              </span>
+            </div>
 
-            <span>
-              {formatStreamDate(stream.scheduledStartTime)}
-            </span>
+            <div className="flex items-center gap-2">
+              <Clock size={16} className="text-[#48a9f8]" />
+              <span>
+                {formatStreamTime(
+                  youtubeStream.scheduledStartTime,
+                )}
+              </span>
+            </div>
           </div>
-
-          <div className="flex items-center gap-2">
-            <Clock size={16} className="text-[#79cef2]" />
-
-            <span>
-              {formatStreamTime(stream.scheduledStartTime)}
-            </span>
-          </div>
-        </div>
+        )}
 
         <a
-          href={stream.url}
+          href={url}
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
             buttonVariants({ variant: "default" }),
-            "mt-6 w-full bg-[#42aee2] text-[#081017] hover:bg-[#79cef2]",
+            isLive
+              ? "mt-6 w-full bg-red-500 text-white hover:bg-red-400"
+              : "mt-6 w-full bg-[#48a9f8] text-white hover:bg-[#318ee8]",
           )}
         >
-          View on YouTube
+          {isLive
+            ? `Watch on ${
+                activeStream?.platform === "youtube"
+                  ? "YouTube"
+                  : "Twitch"
+              }`
+            : "View on YouTube"}
+
           <ExternalLink size={16} />
         </a>
       </div>

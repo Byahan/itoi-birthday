@@ -1,90 +1,146 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Pause, Play } from "lucide-react";
+import Image from "next/image";
+import { Music2, Pause, Play, Shuffle } from "lucide-react";
 
-import FeatureCard from "./FeatureCard";
-import {
-  musicTracks,
-  type MusicTrack,
-} from "@/data/music";
+import { musicTracks } from "@/data/music";
 import { useMusicPlayer } from "@/components/ui/music/MusicPlayerProvider";
 
-function getRandomTrack(): MusicTrack | null {
-  if (musicTracks.length === 0) {
-    return null;
-  }
-
-  const randomIndex = Math.floor(Math.random() * musicTracks.length);
-
-  return musicTracks[randomIndex];
-}
-
 export default function MusicSpotlight() {
-  const [randomTrack, setRandomTrack] =
-    useState<MusicTrack | null>(null);
-
   const {
     currentTrack,
     isPlaying,
+    shuffleEnabled,
     playTrack,
   } = useMusicPlayer();
 
-  // Select a random track when the component first loads.
-  useEffect(() => {
-    setRandomTrack(getRandomTrack());
-  }, []);
-
-  /*
-   * When music is already selected, show the active track.
-   * Before anything is played, show the randomly selected track.
-   */
-  const displayTrack =
-    currentTrack ??
-    randomTrack ??
-    musicTracks[0];
+  const displayTrack = currentTrack ?? musicTracks[0];
 
   if (!displayTrack) {
     return (
-      <div className="rounded-3xl border border-[#79cef2]/15 bg-[#151e26]/80 p-6">
-        <h3 className="text-xl font-bold text-[#f7fbfd]">
-          Music Spotlight
+      <article className="rounded-3xl border border-[#48a9f8]/15 bg-[#ffffff]/80 p-6">
+        <h3 className="text-xl font-bold text-[#202b50]">
+          Music
         </h3>
 
-        <p className="mt-3 text-sm text-[#9eb0ba]">
-          No music has been added yet.
+        <p className="mt-3 text-sm text-[#6f7893]">
+          No songs have been added yet.
         </p>
-      </div>
+      </article>
     );
   }
 
-  const isDisplayedTrackPlaying =
-    currentTrack?.id === displayTrack.id && isPlaying;
-
   return (
-    <FeatureCard
-      title={displayTrack.title}
-      description={`Music spotlight by ${displayTrack.artist}.`}
-      image={displayTrack.cover}
-      action={
-        <button
-          type="button"
-          onClick={() => playTrack(displayTrack)}
-          className="inline-flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#42aee2] px-5 text-sm font-semibold text-[#081017] transition hover:bg-[#79cef2]"
-        >
-          {isDisplayedTrackPlaying ? (
-            <>
-              <Pause size={17} />
-              Pause
-            </>
-          ) : (
-            <>
-              <Play size={17} />
-              Play Music
-            </>
-          )}
-        </button>
-      }
-    />
+    <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#dceaf5] bg-[#f7fbff] shadow-[0_18px_50px_rgba(66,103,145,0.10)] transition duration-300 hover:border-[#48a9f8]/30">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-[#48a9f8]/10 px-6 py-5">
+        <div className="flex items-center gap-3">
+          <Music2 size={20} className="text-[#48a9f8]" />
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#48a9f8]">
+              Music
+            </p>
+
+            <h3 className="mt-1 text-xl font-bold text-[#202b50]">
+              Available Songs
+            </h3>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 rounded-full border border-[#48a9f8]/15 bg-[#f3f9ff]/70 px-3 py-1.5 text-xs text-[#038eff]">
+          <Shuffle size={13} />
+
+          {shuffleEnabled ? "Shuffle On" : "Sequential"}
+        </div>
+      </div>
+
+      {/* Featured Album Cover */}
+      <div className="relative aspect-[16/9] overflow-hidden">
+        <Image
+          src={displayTrack.cover}
+          alt={displayTrack.title}
+          fill
+          sizes="(max-width:1024px) 100vw, 400px"
+          className="object-cover transition duration-500"
+        />
+      </div>
+
+      {/* Current Song */}
+      <div className="px-6 py-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#48a9f8]">
+          {currentTrack ? "Now Playing" : "Music Spotlight"}
+        </p>
+
+        <h3 className="mt-2 text-2xl font-black text-[#202b50]">
+          {displayTrack.title}
+        </h3>
+
+        <p className="mt-1 text-sm text-[#6f7893]">
+          {displayTrack.artist}
+        </p>
+      </div>
+
+      {/* Scrollable song list */}
+      <div className="mx-6 mb-6 max-h-[300px] space-y-2 overflow-y-auto pr-2">
+        {musicTracks.map((track) => {
+          const isCurrent = currentTrack?.id === track.id;
+          const isCurrentPlaying = isCurrent && isPlaying;
+
+          return (
+            <button
+              key={track.id}
+              type="button"
+              onClick={() => playTrack(track)}
+              className={
+                isCurrent
+                  ? "flex w-full items-center gap-3 rounded-2xl border border-[#48a9f8]/30 bg-[#48a9f8]/10 p-3 text-left"
+                  : "flex w-full items-center gap-3 rounded-2xl border border-transparent p-3 text-left transition hover:border-[#038eff]/40 hover:bg-[#48a9f8]/15"
+              }
+            >
+              <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl">
+                <Image
+                  src={track.cover}
+                  alt={track.title}
+                  fill
+                  sizes="48px"
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <p
+                  className={
+                    isCurrent
+                      ? "truncate font-semibold text-[#48a9f8]"
+                      : "truncate font-semibold text-[#202b50]"
+                  }
+                >
+                  {track.title}
+                </p>
+
+                <p className="truncate text-sm text-[#6f7893]">
+                  {track.artist}
+                </p>
+              </div>
+
+              <div
+                className={
+                  isCurrent
+                    ? "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#48a9f8] text-[#081017]"
+                    : "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e5f2ff] text-[#45c5fa]"
+                }
+              >
+                {isCurrentPlaying ? (
+                  <Pause size={16} />
+                ) : (
+                  <Play size={16} className="ml-0.5" />
+                )}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </article>
   );
 }

@@ -2,7 +2,7 @@ export default function MusicPage() {
   return (
     <main className="min-h-screen px-6 pb-16 pt-28 md:px-8">
       <div className="mx-auto max-w-7xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#79cef2]">
+        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#48a9f8]">
           Songs and Covers
         </p>
 

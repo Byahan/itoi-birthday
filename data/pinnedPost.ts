@@ -6,6 +6,7 @@ export const pinnedPost = {
   text: `オフィシャル先行本日までです‼️‼️‼️
 私とお話ししたい方、縁依とい推しチケットで待ってます✨
 https://eplus.jp/sf/detail/4491970001
+
 グッズも在庫追加されたみたいなのでまだだよ〜！って人はぜひお迎えしてください✨
 https://www.neoporte-webshop.com/collections/un-knock-pre-sale`,
 

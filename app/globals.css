@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f0819;
-  --foreground: #ffffff;
+  --itoi-bg: #f8fbff;
+  --itoi-surface: #ffffff;
+  --itoi-surface-blue: #f3f9ff;
+  --itoi-surface-pink: #fff5fa;
+
+  --itoi-text: #202b50;
+  --itoi-muted: #6f7893;
+
+  --itoi-blue: #48a9f8;
+  --itoi-blue-dark: #318ee8;
+  --itoi-blue-soft: #dff1ff;
+
+  --itoi-pink: #f493c2;
+  --itoi-pink-soft: #ffe3f0;
+
+  --itoi-border: #dceaf5;
+  --itoi-shadow: 0 18px 50px rgba(66, 103, 145, 0.1);
 }
 
 html {
@@ -10,9 +25,24 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at top, #30204d 0%, #171024 40%, #0b0713 100%);
-  color: white;
-  overflow-x: hidden;
   min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--itoi-text);
+  background:
+    radial-gradient(
+      circle at 82% 12%,
+      rgba(244, 147, 194, 0.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 68% 25%,
+      rgba(72, 169, 248, 0.13),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f8fbff 55%,
+      #f5f9ff 100%
+    );
 }

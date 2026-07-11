@@ -19,12 +19,12 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed left-0 top-0 z-50 w-full border-b border-[#79cef2]/10 bg-[#0b1117]/80 backdrop-blur-xl">
+    <nav className="fixed left-0 top-0 z-50 w-full border-b border-[#dceaf5] bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:px-8">
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-black tracking-tight text-[#e8f8ff] transition-colors hover:text-[#79cef2] md:text-3xl"
+          className="text-2xl font-black tracking-tight text-[#202b50] transition-colors hover:text-[#48a9f8] md:text-3xl"
         >
           Itoi Toi
         </Link>
@@ -41,14 +41,14 @@ export default function Navbar() {
                 className={cn(
                   "relative rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   active
-                    ? "bg-[#42aee2]/15 text-[#79cef2]"
-                    : "text-[#9eb0ba] hover:bg-white/5 hover:text-[#e8f8ff]",
+                    ? "bg-[#dff1ff] text-[#318ee8]"
+                    : "text-[#6f7893] hover:bg-[#f3f9ff] hover:text-[#202b50]",
                 )}
               >
                 {link.label}
 
                 {active && (
-                  <span className="absolute -bottom-[9px] left-1/2 h-[2px] w-6 -translate-x-1/2 rounded-full bg-[#42aee2]" />
+                  <span className="absolute -bottom-[9px] left-1/2 h-[2px] w-6 -translate-x-1/2 rounded-full bg-[#48a9f8]" />
                 )}
               </Link>
             );
@@ -56,7 +56,7 @@ export default function Navbar() {
         </div>
 
         {/* Temporary Button */}
-        <Button className="hidden bg-[#42aee2] text-[#081017] hover:bg-[#79cef2] md:inline-flex">
+        <Button className="hidden bg-gradient-to-r from-[#f493c2] to-[#48a9f8] text-white shadow-md hover:opacity-90 md:inline-flex">
           Send Wishes
         </Button>
       </div>

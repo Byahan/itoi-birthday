@@ -18,26 +18,30 @@ export default function Hero() {
         {/* Center Panel */}
         <div className="text-center lg:text-left">
 
-          <p className="uppercase tracking-[0.35em] text-[#79cef2] text-sm font-semibold">
-            Neo-Porte Gen 2
+          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#48a9f8]">
+            NEO-PORTE GEN 2
           </p>
 
-          <h1 className="mt-5 text-7xl md:text-8xl font-black leading-none">
+          <h1 className="mt-5 text-6xl font-black tracking-tight text-[#202b50] md:text-8xl">
             Itoi Toi
           </h1>
 
-          <p className="mt-8 max-w-xl leading-8 text-[#9eb0ba]">
+          <p className="mt-7 max-w-xl text-lg leading-8 text-[#6f7893]">
             Welcome to a special website dedicated to celebrating
             Itoi Toi's birthday. Explore memories, messages,
             music, and many little surprises prepared with love.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
-            <Button size="lg">
+            <Button
+              size="lg"
+              className="bg-[#48a9f8] text-white hover:bg-[#318ee8]"
+            >
               Explore
             </Button>
 
             <Button
+              className="border-[#b9dcf7] bg-white text-[#318ee8] hover:bg-[#f3f9ff]"
               size="lg"
               variant="secondary"
             >

@@ -36,7 +36,7 @@ export default async function ChannelStats() {
   ];
 
   return (
-    <div className="w-full border-t border-[#79cef2]/15 pt-5">
+    <div className="w-full border-t border-[#dceaf5] pt-5">
       <div className="grid grid-cols-3">
         {items.map((item, index) => (
           <div
@@ -44,14 +44,22 @@ export default async function ChannelStats() {
             className={
               index === 0
                 ? "text-center"
-                : "border-l border-[#79cef2]/10 text-center"
+                : "border-l border-[#dceaf5] text-center"
             }
           >
-            <p className="text-xl font-black tracking-tight text-[#f7fbfd] md:text-2xl">
+            <p
+              className={`text-xl font-black tracking-tight md:text-2xl ${
+                item.label === "Subscribers"
+                  ? "text-[#202b50]"
+                  : item.label === "Videos"
+                  ? "text-[#48a9f8]"
+                  : "text-[#202b50]"
+              }`}
+            >
               {item.value}
             </p>
 
-            <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[#9eb0ba]">
+            <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[#7b839d]">
               {item.label}
             </p>
           </div>

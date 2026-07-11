@@ -15,7 +15,7 @@ export default function FeatureCard({
   action,
 }: FeatureCardProps) {
   return (
-    <article className="group relative overflow-hidden rounded-3xl border border-[#79cef2]/15 bg-[#151e26]/80 transition duration-300 hover:-translate-y-1 hover:border-[#79cef2]/30">
+    <article className="group relative overflow-hidden rounded-3xl border border-[#48a9f8]/15 bg-[#ffffff]/80 transition duration-300 hover:-translate-y-1 hover:border-[#48a9f8]/30">
       <div className="relative aspect-video overflow-hidden">
         <Image
           src={image}
@@ -27,11 +27,11 @@ export default function FeatureCard({
       </div>
 
       <div className="relative z-10 p-6">
-        <h3 className="text-xl font-bold text-[#f7fbfd]">
+        <h3 className="text-xl font-bold text-[#202b50]">
           {title}
         </h3>
 
-        <p className="mt-3 text-sm leading-6 text-[#9eb0ba]">
+        <p className="mt-3 text-sm leading-6 text-[#6f7893]">
           {description}
         </p>
 
