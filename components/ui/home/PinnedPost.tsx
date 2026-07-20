@@ -36,7 +36,7 @@ export default function PinnedPost() {
   const visibleImages = images.slice(0, 4);
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#f6cfe1] bg-[#fff5fa]/90 shadow-[0_18px_50px_rgba(66,103,145,0.10)] transition duration-300 hover:-translate-y-1 hover:border-[#48a9f8]/30">
+    <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#cfe5f6] bg-[#f5f6ff]/90 shadow-[0_18px_50px_rgba(66,103,145,0.10)] transition duration-300 hover:-translate-y-1 hover:border-[#48a9f8]/30">
       <div className="flex flex-1 flex-col p-6">
         {/* Profile header */}
         <div className="flex items-start justify-between gap-4">
@@ -69,7 +69,7 @@ export default function PinnedPost() {
         </div>
 
         {/* Pinned label */}
-        <div className="mt-5 flex items-center gap-2 text-[#ff2383]">
+        <div className="mt-5 flex items-center gap-2 text-[#23b0ff]">
           <Pin size={14} />
 
           <p className="text-xs font-semibold uppercase tracking-[0.22em]">
@@ -147,7 +147,7 @@ export default function PinnedPost() {
             href={pinnedPost.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#ff2383]/20 bg-[#f3f9ff]/70 px-5 text-sm font-semibold text-[#ff2383] transition hover:border-[#ff2383]/40 hover:bg-[#ff62a6]/15 hover:text-[#ff2383]"
+            className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#23ceff]/20 bg-[#f3f9ff]/70 px-5 text-sm font-semibold text-[#23a7ff] transition hover:border-[#23baff]/40 hover:bg-[#62d5ff]/15 hover:text-[#239dff]"
           >
             View on X
             <ExternalLink size={16} />
