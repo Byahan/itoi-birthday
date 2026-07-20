@@ -35,6 +35,12 @@ export function getYouTubeVideoId(url: string): string | null {
     ) {
       return parsedUrl.pathname.split("/")[2] || null;
     }
+    if (
+      parsedUrl.hostname.includes("youtube.com") &&
+      parsedUrl.pathname.startsWith("/live/")
+    ) {
+      return parsedUrl.pathname.split("/")[2] || null;
+    }
 
     return parsedUrl.searchParams.get("v");
   } catch {
@@ -46,8 +52,8 @@ export function getYouTubeThumbnail(url: string): string | null {
   const videoId = getYouTubeVideoId(url);
 
   return videoId
-    ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
-    : null;
+  ? `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`
+  : null;
 }
 
 export function getTimelineImage(
