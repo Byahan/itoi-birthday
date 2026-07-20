@@ -1,8 +1,7 @@
-import FeatureCard from "./FeatureCard";
-import { Button } from "@/components/ui/button";
 import MusicSpotlight from "./MusicSpotlight";
 import FeaturedVideo from "./FeaturedVideo";
 import PinnedPost from "./PinnedPost";
+import WeeklySchedule from "./WeeklySchedule";
 
 export default function FeaturedSection() {
   return (
@@ -22,8 +21,9 @@ export default function FeaturedSection() {
         </p>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-3">
+      <div className="grid gap-8 lg:grid-cols-2">
         <FeaturedVideo />
+        <WeeklySchedule />
         <PinnedPost />
         <MusicSpotlight />
       </div>

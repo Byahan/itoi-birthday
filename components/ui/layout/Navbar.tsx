@@ -56,9 +56,11 @@ export default function Navbar() {
         </div>
 
         {/* Temporary Button */}
-        <Button className="hidden bg-gradient-to-r from-[#f493c2] to-[#48a9f8] text-white shadow-md hover:opacity-90 md:inline-flex">
-          Send Wishes
-        </Button>
+        <Link href="/wishes">
+          <Button className="hidden bg-gradient-to-r from-[#f493c2] to-[#48a9f8] text-white shadow-md hover:opacity-90 md:inline-flex">
+            Send Wishes
+          </Button>
+        </Link> 
       </div>
     </nav>
   );

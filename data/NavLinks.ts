@@ -12,11 +12,11 @@ export const navLinks = [
     href: "/archives",
   },
   {
-    label: "Artwork",
-    href: "/artwork",
+    label: "Timeline",
+    href: "/timeline",
   },
   {
-    label: "Music",
-    href: "/music",
+    label: "News",
+    href: "/news",
   },
 ];

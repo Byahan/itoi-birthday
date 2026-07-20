@@ -1,3 +1,5 @@
+import type { NewsMedia } from "@/data/news";
+
 export function getGoogleDriveImageUrl(url: string): string {
   const fileIdMatch =
     url.match(/\/file\/d\/([^/]+)/) ??
@@ -9,7 +11,7 @@ export function getGoogleDriveImageUrl(url: string): string {
     return url;
   }
 
-  return `https://lh3.googleusercontent.com/d/${fileId}`;
+  return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1600`;
 }
 
 export function getYouTubeVideoId(url: string): string | null {
@@ -61,4 +63,40 @@ export function getTimelineImage(
   }
 
   return null;
+}
+
+export function getNewsMediaThumbnail(media: NewsMedia): string | null {
+  switch (media.type) {
+    case "image":
+      return getGoogleDriveImageUrl(media.url);
+
+    case "youtube":
+      return getYouTubeThumbnail(media.url);
+
+    case "x-video":
+      // media.url is the thumbnail image
+      return getGoogleDriveImageUrl(media.url);
+
+    default:
+      return null;
+  }
+}
+
+export function getNewsMediaTarget(
+  media: NewsMedia,
+  postUrl: string,
+): string {
+  switch (media.type) {
+    case "image":
+      return getGoogleDriveImageUrl(media.url);
+
+    case "youtube":
+      return media.url;
+
+    case "x-video":
+      return postUrl;
+
+    default:
+      return postUrl;
+  }
 }

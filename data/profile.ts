@@ -22,18 +22,18 @@ She is in the mission to find a master whom she can serve wholeheartedly.`,
 
   costumes: [
     {
-        id: "default",
-        name: "Default",
+        id: "first",
+        name: "1",
         image: "/images/itoi-default.png",
     },
     {
-        id: "casual",
-        name: "Casual",
+        id: "second",
+        name: "2",
         image: "/images/itoi-second.png",
     },
     {
-        id: "idol",
-        name: "Idol",
+        id: "third",
+        name: "3",
         image: "/images/itoi-third.png",
     },
   ],

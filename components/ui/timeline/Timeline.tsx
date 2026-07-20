@@ -55,24 +55,19 @@ export default async function ProfileTimeline() {
   const timelineEvents = await getTimelineEvents();
 
   return (
-    <section className="mt-16">
+    <section>
       <header className="max-w-2xl">
         <div className="flex items-center gap-2 text-[#48a9f8]">
           <CalendarDays size={18} />
 
           <p className="text-sm font-semibold uppercase tracking-[0.3em]">
-            History
+            Timeline
           </p>
         </div>
 
         <h2 className="mt-3 text-4xl font-black tracking-tight text-[#202b50]">
           Itoi Toi Timeline
         </h2>
-
-        <p className="mt-4 text-base leading-7 text-[#6f7893]">
-          Important moments, releases, milestones, and memories from
-          Itoi Toi&apos;s journey.
-        </p>
       </header>
 
       {timelineEvents.length === 0 ? (
@@ -89,7 +84,7 @@ export default async function ProfileTimeline() {
       ) : (
         <div className="relative mt-10">
           {/* Vertical timeline line */}
-          <div className="absolute bottom-0 left-5 top-0 w-px bg-[#dceaf5] lg:left-1/2 lg:-translate-x-1/2" />
+          <div className="absolute bottom-0 left-5 top-0 w-px bg-[#cccccc] lg:left-1/2 lg:-translate-x-1/2" />
 
           <div className="space-y-8">
             {timelineEvents.map((event, index) => {
@@ -241,7 +236,7 @@ export default async function ProfileTimeline() {
                     {/* Timeline marker */}
                     <div className="absolute left-[14px] top-1 lg:left-1/2 lg:-translate-x-1/2">
                         <div
-                        className={`relative z-10 h-3 w-3 rounded-full ring-4 ring-[#f8fbff] ${appearance.dotClass}`}
+                        className={`relative z-10 h-3 w-3 rounded-full ring-4 ring-[#e5e5e5] ${appearance.dotClass}`}
                         />
                     </div>
                     </article>

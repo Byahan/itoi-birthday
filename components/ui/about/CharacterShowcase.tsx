@@ -31,6 +31,19 @@ export default function CharacterShowcase() {
           }`}
         />
       </div>
+
+      <p className="mt-3 text-center text-xs text-gray-500">
+        Image source from{" "}
+        <a
+          href="https://neo-porte.jp/member/itoi-toi"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-sky-600 underline underline-offset-2 hover:text-sky-700"
+        >
+          Neo-Porte Official Website
+        </a>
+        .
+      </p>
     </div>
   );
 }

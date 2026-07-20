@@ -1,6 +1,5 @@
 import { profile } from "@/data/profile";
 import CharacterShowcase from "@/components/ui/about/CharacterShowcase";
-import ProfileTimeline from "@/components/ui/about/ProfileTimeline";
 import CostumeSelector from "@/components/ui/about/CostumeSelector";
 import { CostumeProvider } from "@/components/ui/about/CostumeProvider";
 import SocialLinks from "@/components/ui/about/SocialLinks";
@@ -47,8 +46,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="mt-6 text-lg leading-8 text-[#6f7893]">
-            Learn more about Itoi Toi, her profile, personality, history,
-            and community.
+            Learn more about Itoi Toi, her profile, background, official hashtags, and social media links.
           </p>
         </header>
 
@@ -71,7 +69,7 @@ export default function AboutPage() {
                   {profile.name}
                 </h2>
 
-                <p className="mt-2 text-xl font-semibold text-[#f493c2]">
+                <p className="mt-2 text-xl font-semibold text-[#48a9f8]">
                   {profile.japaneseName}
                 </p>
 
@@ -101,9 +99,9 @@ export default function AboutPage() {
         </CostumeProvider>
 
         {/* Biography */}
-        <section className="mt-16 rounded-3xl border border-[#f6cfe1] bg-[#fff5fa] p-7 shadow-[0_18px_50px_rgba(66,103,145,0.08)] md:p-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#f493c2]">
-            Biography
+        <section className="mt-16 rounded-3xl border border-[#dceaf5] bg-white/90 p-7 shadow-[0_18px_50px_rgba(66,103,145,0.08)] md:p-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#48a9f8]">
+            Background
           </p>
 
           <h2 className="mt-3 text-3xl font-black text-[#202b50]">
@@ -143,7 +141,6 @@ export default function AboutPage() {
           </div>
         </section>
         <SocialLinks />
-        <ProfileTimeline />
       </div>
     </main>
   );
