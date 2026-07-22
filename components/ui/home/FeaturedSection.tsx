@@ -2,6 +2,7 @@ import MusicSpotlight from "./MusicSpotlight";
 import FeaturedVideo from "./FeaturedVideo";
 import PinnedPost from "./PinnedPost";
 import WeeklySchedule from "./WeeklySchedule";
+import Translate from "@/components/ui/language/Translate";
 
 export default function FeaturedSection() {
   return (
@@ -16,8 +17,7 @@ export default function FeaturedSection() {
         </h2>
 
         <p className="mt-5 max-w-2xl text-lg text-[#6f7893]">
-          Watch the latest featured content, see recent updates,
-          and listen to selected music.
+          <Translate t="featuredSection.description" />
         </p>
       </div>
 

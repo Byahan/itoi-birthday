@@ -5,12 +5,15 @@ import { MessageCircle, Paintbrush } from "lucide-react";
 
 import DrawingForm from "@/components/wishes/DrawingForm";
 import MessageForm from "@/components/wishes/MessageForm";
+import { useLanguage } from "@/context/LanguageProvider";
 
 type WishTab = "write" | "draw";
 
 export default function BirthdayTabs() {
   const [activeTab, setActiveTab] =
     useState<WishTab>("write");
+
+  const { t } = useLanguage();
 
   return (
     <section className="overflow-hidden rounded-[2rem] border border-[#e3edf6] bg-white/90 shadow-[0_24px_70px_rgba(64,92,130,0.12)] backdrop-blur">
@@ -26,7 +29,7 @@ export default function BirthdayTabs() {
           }`}
         >
           <MessageCircle size={18} />
-          Write
+          {t.wishes.tabs.message}
         </button>
 
         <button
@@ -40,7 +43,7 @@ export default function BirthdayTabs() {
           }`}
         >
           <Paintbrush size={18} />
-          Draw
+          {t.wishes.tabs.draw}
         </button>
       </div>
 

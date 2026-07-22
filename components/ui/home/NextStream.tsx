@@ -11,6 +11,7 @@ import { getActiveStream } from "@/lib/streaming";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getCurrentOrUpcomingStream } from "@/lib/youtube";
+import Translate from "@/components/ui/language/Translate";
 
 const activeStream = await getActiveStream();
 const youtubeStream = await getCurrentOrUpcomingStream();
@@ -54,7 +55,7 @@ export default async function NextStream() {
         </p>
 
         <h3 className="mt-4 text-2xl font-bold text-[#202b50]">
-          No stream scheduled
+          <Translate t="nextStream.noStreamScheduled" />
         </h3>
       </section>
     );

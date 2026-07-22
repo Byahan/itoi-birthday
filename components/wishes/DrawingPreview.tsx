@@ -9,6 +9,8 @@ import type {
   DrawingStroke,
 } from "@/types/birthday";
 
+import { useLanguage } from "@/context/LanguageProvider";
+
 const CANVAS_WIDTH = 900;
 const CANVAS_HEIGHT = 500;
 
@@ -21,6 +23,8 @@ export default function DrawingPreview({
   drawing,
   name,
 }: DrawingPreviewProps) {
+  const { t } = useLanguage();
+
   const canvasRef =
     useRef<HTMLCanvasElement | null>(null);
 
@@ -123,7 +127,7 @@ export default function DrawingPreview({
       width={CANVAS_WIDTH}
       height={CANVAS_HEIGHT}
       className="block aspect-[9/5] w-full bg-white"
-      aria-label={`Birthday drawing submitted by ${name}`}
+      aria-label={`${t.wishes.drawingPreview.submittedBy} ${name}`}
     />
   );
 }

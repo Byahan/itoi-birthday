@@ -23,6 +23,8 @@ import type {
   DrawingStroke,
 } from "@/types/birthday";
 
+import { useLanguage } from "@/context/LanguageProvider";
+
 const CANVAS_WIDTH = 900;
 const CANVAS_HEIGHT = 500;
 
@@ -65,6 +67,8 @@ function distanceBetweenPoints(
 const DrawingCanvas = forwardRef<
   DrawingCanvasHandle
 >(function DrawingCanvas(_, ref) {
+  const { t, language } = useLanguage();
+
   const canvasRef =
     useRef<HTMLCanvasElement | null>(null);
 
@@ -484,14 +488,14 @@ const DrawingCanvas = forwardRef<
               ? "cursor-cell"
               : "cursor-crosshair"
           }`}
-          aria-label="Birthday drawing canvas"
+          aria-label={t.wishes.drawingCanvas.ariaLabel}
         />
       </div>
 
       <div className="grid gap-6 rounded-3xl border border-[#e3edf6] bg-[#f8fbff] p-5 md:grid-cols-2">
         <div>
           <p className="text-sm font-black text-[#202b50]">
-            Preset colors
+            {t.wishes.drawingCanvas.presetColors}
           </p>
 
           <div className="mt-3 flex flex-wrap gap-3">
@@ -508,7 +512,7 @@ const DrawingCanvas = forwardRef<
                   onClick={() =>
                     chooseColor(color)
                   }
-                  aria-label={`Use color ${color}`}
+                  aria-label={`${t.wishes.drawingCanvas.useColor} ${color}`}
                   aria-pressed={isActive}
                   className={`relative h-10 w-10 rounded-full border-2 transition hover:scale-105 ${
                     isActive
@@ -532,7 +536,7 @@ const DrawingCanvas = forwardRef<
               htmlFor="custom-drawing-color"
               className="text-sm font-black text-[#202b50]"
             >
-              Custom color
+              {t.wishes.drawingCanvas.customColor}
             </label>
 
             <div className="mt-3 flex items-center gap-3">
@@ -553,7 +557,7 @@ const DrawingCanvas = forwardRef<
                   htmlFor="custom-drawing-hex"
                   className="sr-only"
                 >
-                  Custom hexadecimal color
+                 {t.wishes.drawingCanvas.customHexColor}
                 </label>
 
                 <input
@@ -584,7 +588,7 @@ const DrawingCanvas = forwardRef<
               htmlFor="drawing-brush-size"
               className="text-sm font-black text-[#202b50]"
             >
-              Brush size
+              {t.wishes.drawingCanvas.brushSize}
             </label>
 
             <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-[#65708b]">
@@ -618,7 +622,7 @@ const DrawingCanvas = forwardRef<
               }`}
             >
               <Paintbrush size={17} />
-              Brush
+              {t.wishes.drawingCanvas.brush}
             </button>
 
             <button
@@ -632,7 +636,7 @@ const DrawingCanvas = forwardRef<
               }`}
             >
               <Eraser size={17} />
-              Eraser
+              {t.wishes.drawingCanvas.eraser}
             </button>
 
             <button
@@ -642,7 +646,7 @@ const DrawingCanvas = forwardRef<
               className="flex h-11 items-center justify-center gap-2 rounded-xl border border-[#dceaf5] bg-white text-sm font-black text-[#737d96] transition hover:text-[#318ee8] disabled:cursor-not-allowed disabled:opacity-40"
             >
               <Undo2 size={17} />
-              Undo
+              {t.wishes.drawingCanvas.undo}
             </button>
 
             <button
@@ -652,7 +656,7 @@ const DrawingCanvas = forwardRef<
               className="flex h-11 items-center justify-center gap-2 rounded-xl border border-[#dceaf5] bg-white text-sm font-black text-[#737d96] transition hover:text-[#318ee8] disabled:cursor-not-allowed disabled:opacity-40"
             >
               <Redo2 size={17} />
-              Redo
+              {t.wishes.drawingCanvas.redo}
             </button>
 
             <button
@@ -662,7 +666,7 @@ const DrawingCanvas = forwardRef<
               className="col-span-2 flex h-11 items-center justify-center gap-2 rounded-xl border border-red-100 bg-white text-sm font-black text-red-500 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
             >
               <Trash2 size={17} />
-              Clear canvas
+              {t.wishes.drawingCanvas.clearCanvas}
             </button>
           </div>
         </div>
@@ -670,19 +674,25 @@ const DrawingCanvas = forwardRef<
 
       <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-[#8a91a8]">
         <span>
-          {strokes.length}/{MAX_STROKES} strokes
+          {strokes.length}/{MAX_STROKES}{" "}
+          {t.wishes.drawingCanvas.strokes}
         </span>
 
         <span>
-          {totalPoints.toLocaleString()}/
-          {MAX_TOTAL_POINTS.toLocaleString()} points
+          {totalPoints.toLocaleString(
+            language === "ja" ? "ja-JP" : "en-US",
+          )}
+          /
+          {MAX_TOTAL_POINTS.toLocaleString(
+            language === "ja" ? "ja-JP" : "en-US",
+          )}{" "}
+          {t.wishes.drawingCanvas.points}
         </span>
       </div>
 
       {strokes.length >= MAX_STROKES && (
         <p className="rounded-2xl border border-amber-100 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-700">
-          The maximum number of strokes has been
-          reached.
+           {t.wishes.drawingCanvas.maxStrokesReached}
         </p>
       )}
     </div>

@@ -11,8 +11,11 @@ import DrawingCanvas, {
 } from "@/components/wishes/DrawingCanvas";
 
 import { submitDrawingWish } from "@/lib/wishes/birthdayWishes";
+import { useLanguage } from "@/context/LanguageProvider";
 
 export default function DrawingForm() {
+  const { t } = useLanguage();
+
   const drawingCanvasRef =
     useRef<DrawingCanvasHandle | null>(null);
 
@@ -41,7 +44,7 @@ export default function DrawingForm() {
 
     if (drawing.length === 0) {
       setError(
-        "Please draw something before submitting.",
+        t.wishes.drawingForm.emptyError,
       );
       return;
     }
@@ -58,13 +61,12 @@ export default function DrawingForm() {
       drawingCanvasRef.current?.clearCanvas();
 
       setSuccess(
-        "Your drawing was submitted and is waiting for approval.",
+        t.wishes.drawingForm.success,
       );
     } catch (submissionError) {
+      console.error(submissionError);
       setError(
-        submissionError instanceof Error
-          ? submissionError.message
-          : "Unable to submit your drawing.",
+        t.wishes.drawingForm.error,
       );
     } finally {
       setIsSubmitting(false);
@@ -81,12 +83,11 @@ export default function DrawingForm() {
           htmlFor="drawing-name"
           className="block text-sm font-black text-[#202b50]"
         >
-          Name
+          {t.wishes.drawingForm.nameLabel}
         </label>
 
         <p className="mt-1 text-xs text-[#7b839d]">
-          Optional. Leave it blank to submit as
-          Anonymous.
+          {t.wishes.drawingForm.nameHelp}
         </p>
 
         <input
@@ -97,7 +98,9 @@ export default function DrawingForm() {
           onChange={(event) =>
             setName(event.target.value)
           }
-          placeholder="Your name"
+          placeholder={
+            t.wishes.drawingForm.namePlaceholder
+          }
           className="mt-3 h-12 w-full rounded-2xl border border-[#dceaf5] bg-[#f8fbff] px-4 text-sm text-[#202b50] outline-none transition focus:border-[#48a9f8] focus:ring-4 focus:ring-[#48a9f8]/10"
         />
       </div>
@@ -128,8 +131,8 @@ export default function DrawingForm() {
         className="h-12 w-full rounded-2xl bg-[#48a9f8] px-6 text-sm font-black text-white shadow-[0_12px_30px_rgba(72,169,248,0.20)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(72,169,248,0.26)] disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting
-          ? "Submitting Drawing..."
-          : "Submit Drawing"}
+          ? t.wishes.drawingForm.submitting
+          : t.wishes.drawingForm.submit}
       </button>
     </form>
   );

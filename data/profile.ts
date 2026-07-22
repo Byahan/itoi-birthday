@@ -11,15 +11,6 @@ export const profile = {
   fanName: "といあみ",
   oshiMark: "🫖🐾",
 
-  greeting:
-    "Waaa, that was wonderful! ...by the way, what we were talking about again?",
-
-  biography: `A young maid who snuck out of a mansion in a remote region.
-She looks like a quiet person but that is not really true, she does her things at her own pace and she a bit of an airhead.
-Maybe that is the reason why she always smiling and nodding during meetings with other members while not understanding one bit of it, which happened quite a lot.
-The stuffed animal is bought by her grandmother who lives in Japan for her is to replace the pet she cannot have due having animal allergy.
-She is in the mission to find a master whom she can serve wholeheartedly.`,
-
   costumes: [
     {
         id: "first",
@@ -42,15 +33,15 @@ She is in the mission to find a master whom she can serve wholeheartedly.`,
 
   hashtags: [
     {
-      label: "General",
+      label: "profile.hashtagsname.general",
       value: "#絲依とい",
     },
     {
-      label: "Fan Art",
+      label: "profile.hashtagsname.fanart",
       value: "#とうといえ",
     },
     {
-      label: "Live",
+      label: "profile.hashtagsname.live",
       value: "#いといのま",
     },
   ],

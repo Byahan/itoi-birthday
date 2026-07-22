@@ -5,6 +5,7 @@ import type { ArchiveCategory } from "@/types/archive";
 
 import Pagination from "@/components/ui/archives/Pagination";
 import { getArchiveVideos } from "@/lib/youtube";
+import Translate from "@/components/ui/language/Translate";
 
 const VIDEOS_PER_PAGE = 12;
 
@@ -129,8 +130,10 @@ export default async function ArchivesPage({
           </h1>
 
           <p className="mt-6 text-lg leading-8 text-[#6f7893]">
-            Browse Itoi Toi&apos;s streams, videos, covers, and other
-            uploaded content.
+            <Translate t="archives.description" />{" "}
+            <span className="font-bold">
+              <Translate t="archives.membersOnlyNotice" />
+            </span>
           </p>
         </header>
 

@@ -7,30 +7,31 @@ import {
   useSearchParams,
 } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import Translate from "../language/Translate";
 
 const filters = [
   {
-    label: "All",
+    label: "archives.labelname.all",
     value: "all",
   },
   {
-    label: "Streams",
+    label: "archives.labelname.stream",
     value: "stream",
   },
   {
-    label: "Videos",
+    label: "archives.labelname.video",
     value: "video",
   },
   {
-    label: "Music",
+    label: "archives.labelname.music",
     value: "music",
   },
   {
-    label: "Karaoke",
+    label: "archives.labelname.karaoke",
     value: "karaoke",
   },
   {
-    label: "Shorts",
+    label: "archives.labelname.short",
     value: "short",
   },
 ] as const;
@@ -134,7 +135,7 @@ export default function ArchiveFilters({
                   : "h-10 rounded-xl border border-[#dceaf5] bg-white px-4 text-sm font-semibold text-[#6f7893] transition hover:border-[#48a9f8]/50 hover:bg-[#f3f9ff] hover:text-[#318ee8]"
               }
             >
-              {filter.label}
+              <Translate t={filter.label} />
             </button>
           );
         })}

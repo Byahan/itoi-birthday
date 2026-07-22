@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 
 import DrawingPreview from "@/components/wishes/DrawingPreview";
+import { useLanguage } from "@/context/LanguageProvider";
 
 import type {
   BirthdayWish,
@@ -17,22 +18,28 @@ interface WishCardProps {
 
 function formatWishDate(
   wish: BirthdayWish,
+  language: "en" | "ja",
+  fallback: string,
 ): string {
   if (!wish.createdAt) {
-    return "Recently submitted";
+    return fallback;
   }
 
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Jakarta",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(wish.createdAt.toDate());
+  return new Intl.DateTimeFormat(
+    language === "ja" ? "ja-JP" : "en-US",
+    {
+      timeZone: "Asia/Jakarta",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    },
+  ).format(wish.createdAt.toDate());
 }
 
 export default function WishCard({
   wish,
 }: WishCardProps) {
+  const { t, language } = useLanguage();
   const isDrawing =
     wish.type === "drawing";
 
@@ -57,7 +64,11 @@ export default function WishCard({
             </h3>
 
             <p className="mt-1 text-xs font-medium text-[#8a91a8]">
-              {formatWishDate(wish)}
+              {formatWishDate(
+                wish,
+                language,
+                t.wishes.wishCard.recentlySubmitted,
+              )}
             </p>
           </div>
 
@@ -75,8 +86,8 @@ export default function WishCard({
             )}
 
             {isDrawing
-              ? "Drawing"
-              : "Message"}
+              ? t.wishes.wishCard.drawing
+              : t.wishes.wishCard.message}
           </span>
         </div>
 
@@ -90,7 +101,7 @@ export default function WishCard({
           (!wish.drawing ||
             wish.drawing.length === 0) && (
             <p className="mt-5 text-sm text-[#8a91a8]">
-              This drawing could not be displayed.
+              {t.wishes.wishCard.drawingUnavailable}
             </p>
           )}
       </div>

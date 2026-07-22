@@ -2,6 +2,7 @@ import Image from "next/image";
 import LiveStatus from "./LiveStatus";
 import NextStream from "./NextStream";
 import ChannelStats from "./ChannelStats";
+import HeroText from "./HeroText";
 
 export default function Hero() {
   return (
@@ -16,19 +17,7 @@ export default function Hero() {
 
         {/* Center Panel */}
         <div className="order-1 text-center lg:order-2 lg:text-left">
-
-          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#48a9f8]">
-            NEO-PORTE GEN 2
-          </p>
-
-          <h1 className="mt-5 text-5xl font-black tracking-tight text-[#202b50] sm:text-6xl md:text-8xl">
-            Itoi Toi
-          </h1>
-
-          <p className="mx-auto mt-7 max-w-xl text-base leading-7 text-[#6f7893] md:text-lg md:leading-8 lg:mx-0">
-            This is an unofficial fan-made website dedicated to support Itoi Toi, a VTuber from Neo-Porte.
-            This website has no official affiliation with Neo-Porte, or any other affiliated companies, agencies, or organizations.
-          </p>
+          <HeroText />
         </div>
 
         {/* Right Panel */}

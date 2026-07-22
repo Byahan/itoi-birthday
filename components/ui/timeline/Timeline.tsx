@@ -11,6 +11,7 @@ import {
 import type { TimelineEvent } from "@/data/timeline";
 import { getTimelineEvents } from "@/lib/timeline";
 import { getTimelineImage } from "@/lib/media";
+import TimelineText from "@/components/ui/language/TimelineText";
 
 function getCategoryAppearance(category: TimelineEvent["category"]) {
   switch (category) {
@@ -118,7 +119,7 @@ export default async function ProfileTimeline() {
                     <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-2xl bg-[#f3f9ff]">
                         <Image
                         src={mediaUrl}
-                        alt={event.title}
+                        alt={event.titleEn}
                         fill
                         sizes="(max-width: 1024px) 100vw, 480px"
                         className="object-contain transition duration-300 group-hover:scale-105"
@@ -143,18 +144,24 @@ export default async function ProfileTimeline() {
                     </div>
 
                     <h3 className="mt-3 text-lg font-black leading-snug text-[#202b50]">
-                        {event.title}
+                      <TimelineText
+                        en={event.titleEn}
+                        ja={event.titleJa}
+                      />
                     </h3>
 
-                    {event.description && (
-                        <p className="mt-2 line-clamp-3 text-sm leading-6 text-[#6f7893]">
-                        {event.description}
-                        </p>
+                    {(event.descriptionEn || event.descriptionJa) && (
+                      <p className="mt-2 line-clamp-3 text-sm leading-6 text-[#6f7893]">
+                        <TimelineText
+                          en={event.descriptionEn}
+                          ja={event.descriptionJa}
+                        />
+                      </p>
                     )}
 
                     {destinationUrl && (
                         <span className="mt-3 inline-flex text-sm font-semibold text-[#318ee8]">
-                        View event →
+                        View →
                         </span>
                     )}
                     </div>

@@ -7,6 +7,7 @@ import BackgroundEffects from "@/components/background/BackgroundEffects";
 import Navbar from "@/components/ui/layout/Navbar";
 import MusicPlayerBar from "@/components/ui/music/MusicPlayerBar";
 import { MusicPlayerProvider } from "@/components/ui/music/MusicPlayerProvider";
+import { LanguageProvider } from "@/context/LanguageProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,16 +40,17 @@ export default function RootLayout({
         className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} relative isolate min-h-screen`}
       >
         <BackgroundEffects />
+        <LanguageProvider>
+          <MusicPlayerProvider>
+            <div className="relative z-0 min-h-screen">
+              <Navbar />
 
-        <MusicPlayerProvider>
-          <div className="relative z-0 min-h-screen">
-            <Navbar />
+              {children}
 
-            {children}
-
-            <MusicPlayerBar />
-          </div>
-        </MusicPlayerProvider>
+              <MusicPlayerBar />
+            </div>
+          </MusicPlayerProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

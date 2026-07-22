@@ -4,16 +4,6 @@ import Link from "next/link";
 export default function WeeklySchedule() {
   return (
     <div className="rounded-3xl border border-[#d6e9fb] bg-white p-5 shadow-sm">
-      <div className="mb-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#48a9f8]">
-          Schedule
-        </p>
-
-        <h3 className="mt-2 text-2xl font-bold text-[#202b50]">
-          Weekly Schedule
-        </h3>
-      </div>
-
       <Link
         href="https://www.youtube.com/watch?v=RXz3wFA503I"
         target="_blank"
@@ -28,6 +18,15 @@ export default function WeeklySchedule() {
           className="aspect-video w-full object-cover transition duration-300 group-hover:scale-105"
         />
       </Link>
+      <div className="p-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#48a9f8]">
+          Schedule
+        </p>
+
+        <h3 className="mt-2 text-2xl font-bold text-[#202b50]">
+          Weekly Schedule
+        </h3>
+      </div>
     </div>
   );
 }

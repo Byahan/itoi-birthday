@@ -8,9 +8,15 @@ import type {
 interface TimelineSheetRow {
   id?: string;
   date?: string;
-  title?: string;
-  description?: string;
+
+  title_en?: string;
+  title_ja?: string;
+
+  description_en?: string;
+  description_ja?: string;
+
   category?: string;
+
   imageUrl?: string;
   youtubeUrl?: string;
   externalUrl?: string;
@@ -78,18 +84,35 @@ export async function getTimelineEvents(): Promise<TimelineEvent[]> {
       console.error("Timeline CSV parsing errors:", result.errors);
     }
 
-    return result.data
-      .filter((row) => row.title?.trim())
-      .map((row, index) => ({
-        id: row.id?.trim() || `timeline-${index}`,
-        date: row.date?.trim() || "",
-        title: row.title?.trim() || "Untitled Event",
-        description: row.description?.trim() || "",
-        category: normalizeCategory(row.category),
-        imageUrl: emptyToNull(row.imageUrl),
-        youtubeUrl: emptyToNull(row.youtubeUrl),
-        externalUrl: emptyToNull(row.externalUrl),
-      }));
+  return result.data
+    .filter(
+      (row) =>
+        row.title_en?.trim() ||
+        row.title_ja?.trim()
+    )
+    .map((row, index) => ({
+      id: row.id?.trim() || `timeline-${index}`,
+      date: row.date?.trim() || "",
+
+      titleEn:
+        row.title_en?.trim() ||
+        row.title_ja?.trim() ||
+        "Untitled Event",
+
+      titleJa:
+        row.title_ja?.trim() || "",
+
+      descriptionEn:
+        row.description_en?.trim() || "",
+
+      descriptionJa:
+        row.description_ja?.trim() || "",
+
+      category: normalizeCategory(row.category),
+      imageUrl: emptyToNull(row.imageUrl),
+      youtubeUrl: emptyToNull(row.youtubeUrl),
+      externalUrl: emptyToNull(row.externalUrl),
+    }));
   } catch (error) {
     console.error("Unable to load timeline events:", error);
     return [];

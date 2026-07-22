@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 import WishCard from "@/components/wishes/WishCard";
-
+import { useLanguage } from "@/context/LanguageProvider";
 import { getApprovedWishes } from "@/lib/wishes/getWishes";
 
 import type {
@@ -26,6 +26,8 @@ import type {
 } from "firebase/firestore";
 
 export default function WishesGallery() {
+  const { t } = useLanguage();
+
   const [wishes, setWishes] = useState<
     BirthdayWish[]
   >([]);
@@ -70,14 +72,12 @@ export default function WishesGallery() {
         );
 
         setError(
-          loadingError instanceof Error
-            ? loadingError.message
-            : "Unable to load birthday wishes.",
+          t.wishes.galleryState.loadErrorDetail,
         );
       } finally {
         setIsLoading(false);
       }
-    }, []);
+    }, [t]);
 
   useEffect(() => {
     if (hasLoadedRef.current) {
@@ -138,9 +138,7 @@ export default function WishesGallery() {
       );
 
       setError(
-        loadingError instanceof Error
-          ? loadingError.message
-          : "Unable to load more wishes.",
+        t.wishes.galleryState.loadMoreError,
       );
     } finally {
       setIsLoadingMore(false);
@@ -156,7 +154,7 @@ export default function WishesGallery() {
         />
 
         <p className="mt-4 text-sm font-bold text-[#7b839d]">
-          Loading birthday memories...
+          {t.wishes.galleryState.loading}
         </p>
       </div>
     );
@@ -166,8 +164,7 @@ export default function WishesGallery() {
     return (
       <div className="rounded-3xl border border-red-100 bg-red-50 px-6 py-12 text-center">
         <p className="font-bold text-red-600">
-          The birthday memories could not be
-          loaded.
+           {t.wishes.galleryState.loadError}
         </p>
 
         <p className="mt-2 text-sm text-red-500">
@@ -183,7 +180,7 @@ export default function WishesGallery() {
           className="mx-auto mt-6 flex h-11 items-center justify-center gap-2 rounded-xl bg-white px-5 text-sm font-black text-red-600 shadow-sm transition hover:bg-red-100"
         >
           <RefreshCw size={16} />
-          Try again
+          {t.wishes.galleryState.tryAgain}
         </button>
       </div>
     );
@@ -198,12 +195,11 @@ export default function WishesGallery() {
         />
 
         <h3 className="mt-4 text-lg font-black text-[#202b50]">
-          No memories yet
+           {t.wishes.galleryState.emptyTitle}
         </h3>
 
         <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#7b839d]">
-          Approved birthday messages and
-          drawings will appear together here.
+          {t.wishes.galleryState.emptyDescription}
         </p>
       </div>
     );
@@ -245,16 +241,15 @@ export default function WishesGallery() {
             )}
 
             {isLoadingMore
-              ? "Loading..."
-              : "Load More Memories"}
+              ? t.wishes.galleryState.loadingMore
+              : t.wishes.galleryState.loadMore}
           </button>
         </div>
       )}
 
       {!hasMore && wishes.length > 8 && (
         <p className="mt-10 text-center text-sm font-semibold text-[#8a91a8]">
-          You have reached the end of the
-          birthday memories.
+           {t.wishes.galleryState.endReached}
         </p>
       )}
     </div>

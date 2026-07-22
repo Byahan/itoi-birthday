@@ -210,14 +210,24 @@ export default function ArchiveVideoGrid({
                 </p>
               )}
 
+            <div className="mt-6 flex gap-3">
+              <button
+                type="button"
+                onClick={closeVideo}
+                className="inline-flex h-10 items-center justify-center rounded-xl border border-[#dceaf5] bg-white px-5 text-sm font-bold text-[#202b50] transition hover:border-[#89caff]/40 hover:bg-[#5cb6ff]/15"
+              >
+                Back
+              </button>
+
               <a
                 href={selectedVideo.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex h-10 items-center justify-center rounded-xl bg-[#48a9f8] px-5 text-sm font-bold text-white transition hover:bg-[#318ee8]"
+                className="inline-flex h-10 items-center justify-center rounded-xl bg-[#48a9f8] px-5 text-sm font-bold text-white transition hover:bg-[#318ee8]"
               >
                 Open on YouTube
               </a>
+            </div>
             </div>
           </div>
         </div>

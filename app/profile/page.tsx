@@ -1,33 +1,34 @@
 import { profile } from "@/data/profile";
-import CharacterShowcase from "@/components/ui/about/CharacterShowcase";
-import CostumeSelector from "@/components/ui/about/CostumeSelector";
-import { CostumeProvider } from "@/components/ui/about/CostumeProvider";
-import SocialLinks from "@/components/ui/about/SocialLinks";
+import CharacterShowcase from "@/components/ui/profile/CharacterShowcase";
+import CostumeSelector from "@/components/ui/profile/CostumeSelector";
+import { CostumeProvider } from "@/components/ui/profile/CostumeProvider";
+import SocialLinks from "@/components/ui/profile/SocialLinks";
+import Translate from "@/components/ui/language/Translate";
 
-export default function AboutPage() {
+export default function ProfilePage() {
   const details = [
     {
-      label: "Birthday",
+      label: "profile.details.birthday",
       value: profile.birthday,
     },
     {
-      label: "Debut",
+      label: "profile.details.debut",
       value: profile.debutDate,
     },
     {
-      label: "Height",
+      label: "profile.details.height",
       value: profile.height,
     },
     {
-      label: "Fan Name",
+      label: "profile.details.fanName",
       value: profile.fanName,
     },
     {
-      label: "Fan Mark",
+      label: "profile.details.fanMark",
       value: profile.oshiMark,
     },
     {
-      label: "Generation",
+      label: "profile.details.generation",
       value: profile.generation,
     },
   ];
@@ -46,7 +47,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="mt-6 text-lg leading-8 text-[#6f7893]">
-            Learn more about Itoi Toi, her profile, background, official hashtags, and social media links.
+            <Translate t="profile.description" />
           </p>
         </header>
 
@@ -74,7 +75,7 @@ export default function AboutPage() {
                 </p>
 
                 <p className="mt-6 text-base leading-8 text-[#6f7893]">
-                  {profile.greeting}
+                  <Translate t="profile.greeting" />
                 </p>
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -84,7 +85,7 @@ export default function AboutPage() {
                       className="rounded-2xl border border-[#dceaf5] bg-[#f8fbff] px-5 py-4"
                     >
                       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7b839d]">
-                        {detail.label}
+                        <Translate t={detail.label} />
                       </p>
 
                       <p className="mt-2 font-bold text-[#202b50]">
@@ -109,7 +110,7 @@ export default function AboutPage() {
           </h2>
 
           <p className="mt-6 whitespace-pre-line text-base leading-8 text-[#5f6881]">
-            {profile.biography}
+            <Translate t="profile.biography" />
           </p>
         </section>
 
@@ -130,7 +131,7 @@ export default function AboutPage() {
                 className="rounded-2xl border border-[#dceaf5] bg-white/90 px-6 py-5 shadow-[0_12px_35px_rgba(66,103,145,0.07)]"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7b839d]">
-                  {hashtag.label}
+                 <Translate t={hashtag.label} />
                 </p>
 
                 <p className="mt-2 text-lg font-bold text-[#318ee8]">
