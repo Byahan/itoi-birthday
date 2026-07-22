@@ -22,8 +22,8 @@ export default function FeaturedSection() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
-        <FeaturedVideo />
         <WeeklySchedule />
+        <FeaturedVideo />
         <PinnedPost />
         <MusicSpotlight />
       </div>
