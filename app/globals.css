@@ -128,9 +128,7 @@ body {
 
   opacity: 0.62;
 
-  filter:
-    drop-shadow(0 0 5px rgba(72, 169, 248, 0.35))
-    drop-shadow(0 0 12px rgba(72, 169, 248, 0.18));
+  filter: drop-shadow(0 0 5px rgba(72, 169, 248, 0.28));
 
   animation:
     sparkle-float 8s ease-in-out infinite,
@@ -143,9 +141,7 @@ body {
   color: rgba(49, 142, 232, 0.78);
   opacity: 0.82;
 
-  filter:
-    drop-shadow(0 0 6px rgba(72, 169, 248, 0.55))
-    drop-shadow(0 0 16px rgba(72, 169, 248, 0.28));
+  filter: drop-shadow(0 0 7px rgba(72, 169, 248, 0.4));
 }
 
 .background-circle {
@@ -283,5 +279,45 @@ body {
   .background-sparkle,
   .background-circle {
     animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Keep blobs visible but stop expensive movement */
+  .background-blob {
+    animation: none;
+    will-change: auto;
+    filter: blur(70px);
+  }
+
+  /* Hide two less important blobs */
+  .background-blob-secondary,
+  .background-blob-bottom {
+    display: none;
+  }
+
+  /* Stop sparkle movement */
+  .background-sparkle {
+    animation: none;
+    will-change: auto;
+    filter: none;
+    opacity: 0.45;
+  }
+
+  /* Hide most sparkles and keep only a few */
+  .background-sparkle:nth-child(n + 7) {
+    display: none;
+  }
+
+  /* Remove animated circles on mobile */
+  .background-circle {
+    display: none;
+  }
+
+  /* Simplify the grid */
+  .background-grid {
+    opacity: 0.45;
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 }
