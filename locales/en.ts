@@ -6,6 +6,7 @@ export const en = {
         timeline: "Timeline",
         news: "News",
         wishes: "Send Wishes",
+        about: "About",
     },
 
     hero: {
@@ -201,6 +202,44 @@ export const en = {
 
             drawingPreview: {
             submittedBy: "Birthday drawing submitted by",
+        },
+    },
+
+    about: {
+        badge: "About",
+
+        home: "Home",
+        homeDescription:
+            "Displays the live status, upcoming streams, channel statistics, and featured content that I update manually.\n✦ There is also a built-in music player with locally stored songs, so you can listen to music while browsing the website.",
+
+        profile: "Profile",
+        profileDescription:
+            "Shows Itoi Toi's costumes, biography, and profile. You can also switch between her costumes, just like on the official website.",
+
+        archives: "Archives",
+        archivesDescription:
+            "Browse archived livestreams, videos, Shorts, and other YouTube content.\n✦ Members-only livestreams and videos are not listed.\n✦ Private livestreams and videos are also not listed.",
+
+        timeline: "Timeline",
+        timelineDescription: {
+            timelineDescription1:
+        "Shows a timeline of events from her debut until now, updated manually.",
+
+        timelineDescription2:
+            "Most events are sourced from",
+        },
+
+        news: "News",
+        newsDescription:
+            "Displays announcements posted on the official Neo-Porte X account whenever Itoi Toi is mentioned, from her debut onward.\n✦ Posts are sorted by the latest first. I may add sorting options in the future.",
+
+        wishes: "Send Wishes",
+        wishesDescription:
+            "Leave a birthday message or drawing. Approved submissions will be displayed publicly.\n✦ Messages and drawings are reviewed manually before being approved, so please avoid submitting inappropriate content.",
+
+        projectDescription: {
+            projectDescription1: "Thank you for visiting, and thank you for reading this far!\nI hope this website helps you learn more about Itoi Toi and makes it easier to explore her activities and content.\nIf you notice any missing information, mistakes, or have suggestions for improving the website, please feel free to let me know.\nThis website is managed independently by ",
+            projectDescription2: ". Please refrain from contacting Neo-Porte, Itoi Toi, or any related parties regarding this website.",
         },
     },
 };

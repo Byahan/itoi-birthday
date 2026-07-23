@@ -69,7 +69,7 @@ export default function MusicSpotlight() {
       {/* Current Song */}
       <div className="px-6 py-5">
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#48a9f8]">
-          {currentTrack ? "Now Playing" : "Music Spotlight"}
+          {currentTrack ? "Now Playing" : "Start Listening"}
         </p>
 
         <h3 className="mt-2 text-2xl font-black text-[#202b50]">

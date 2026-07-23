@@ -31,6 +31,7 @@ export default function Navbar() {
       "/archives": t.nav.archives,
       "/timeline": t.nav.timeline,
       "/news": t.nav.news,
+      "/about": t.nav.about,
     };
 
     return labels[href] ?? href;

@@ -19,4 +19,8 @@ export const navLinks = [
     label: "News",
     href: "/news",
   },
+  {
+  href: "/about",
+  label: "About",
+  },
 ];

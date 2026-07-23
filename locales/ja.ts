@@ -1,11 +1,12 @@
 export const ja = {
     nav: {
-        home: "ホーム",
-        profile: "プロフィール",
-        archives: "アーカイブ",
-        timeline: "沿革",
-        news: "ニュース",
-        wishes: "メッセージ",
+        home: "Home",
+        profile: "Profile",
+        archives: "Archives",
+        timeline: "Timeline",
+        news: "News",
+        wishes: "Send Wishes",
+        about: "About",
     },
 
     hero: {
@@ -200,6 +201,47 @@ export const ja = {
 
             drawingPreview: {
             submittedBy: "バースデーイラストの投稿者：",
+        },
+    },
+
+    about: {
+        badge: "About",
+
+        home: "Home",
+        homeDescription:
+            "配信状況、配信予定、チャンネル統計、そして手動で更新しているおすすめコンテンツを表示します。\n✦ ローカル保存された楽曲を再生できる音楽プレイヤーも搭載しているので、サイトを閲覧しながら音楽を楽しめます。",
+
+        profile: "Profile",
+        profileDescription:
+            "絲依といさんの衣装、プロフィール、経歴を掲載しています。\n公式サイトと同じように衣装を切り替えることもできます。",
+
+        archives: "Archives",
+        archivesDescription:
+            "配信アーカイブ、動画、Shorts などの YouTube コンテンツを閲覧できます。\n✦ メンバー限定の配信・動画は掲載していません。\n✦ 非公開の配信・動画も掲載していません。",
+
+        timeline: "Timeline",
+        timelineDescription: {
+            timelineDescription1:
+                "デビューから現在までの出来事を、手動で更新しながら時系列でまとめています。",
+
+            timelineDescription2:
+                "掲載している出来事の多くは",
+        },
+
+        news: "News",
+        newsDescription:
+            "絲依といさんに関する Neo-Porte公式X のお知らせを、デビュー時から掲載しています。\n✦ 投稿は新しい順に表示されています。今後、並び替え機能を追加する予定です。",
+
+        wishes: "Send Wishes",
+        wishesDescription:
+            "お祝いメッセージやイラストを投稿できます。承認された投稿はサイト上で公開されます。\n✦ 投稿内容は公開前に手動で確認しています。不適切な内容の投稿はご遠慮ください。",
+
+        projectDescription: {
+            projectDescription1:
+                "ご覧いただきありがとうございます！\nこのサイトを通じて、絲依といさんのことをもっと知っていただき、活動やコンテンツをより楽しんでいただければ幸いです。\n掲載内容の誤りや不足、改善点などがございましたら、お気軽にご連絡ください。\n当サイトは ",
+
+            projectDescription2:
+                " が個人で管理・運営しております。当サイトに関するお問い合わせは、Neo-Porte、絲依といさん、および関係各所へ行わないようお願いいたします。",
         },
     },
 };
