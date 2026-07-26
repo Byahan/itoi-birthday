@@ -131,7 +131,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="font-medium text-[#48a9f8] hover:underline"
             >
-              Byahan (@shk88995)
+              (@shk88995)
             </a>
             <Translate t="about.projectDescription.projectDescription2" />
           </p>

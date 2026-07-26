@@ -238,7 +238,7 @@ export const en = {
             "Leave a birthday message or drawing. Approved submissions will be displayed publicly.\n✦ Messages and drawings are reviewed manually before being approved, so please avoid submitting inappropriate content.",
 
         projectDescription: {
-            projectDescription1: "Thank you for visiting, and thank you for reading this far!\nI hope this website helps you learn more about Itoi Toi and makes it easier to explore her activities and content.\nIf you notice any missing information, mistakes, or have suggestions for improving the website, please feel free to let me know.\nThis website is managed independently by ",
+            projectDescription1: "Thank you for visiting, and thank you for reading this far!\nI hope this website helps you learn more about Itoi Toi and makes it easier to explore her activities and content.\nIf you notice any missing information, mistakes, or have suggestions for improving the website, please feel free to let me know.\nThis website is managed independently by Byahan ",
             projectDescription2: ". Please refrain from contacting Neo-Porte, Itoi Toi, or any related parties regarding this website.",
         },
     },
