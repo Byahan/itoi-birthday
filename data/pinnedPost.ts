@@ -1,21 +1,57 @@
-export const pinnedPost = {
+export type PinnedPostMedia =
+  | {
+      type: "image";
+      src: string;
+    }
+  | {
+      type: "video";
+      src: string;
+      poster?: string;
+    };
+
+type PinnedPostData = {
+  displayName: string;
+  username: string;
+  profileImage: string;
+  text: string;
+  date: string;
+  url: string;
+  media: PinnedPostMedia[];
+};
+
+export const pinnedPost: PinnedPostData = {
   displayName: "絲依とい / いといとい🫖🐾",
   username: "@itoitoi_Q",
   profileImage: "/images/itoi-profile.jpg",
 
-  text: `オフィシャル先行本日までです‼️‼️‼️
-私とお話ししたい方、縁依とい推しチケットで待ってます✨
-https://eplus.jp/sf/detail/4491970001
+  text: `ロミオとシンデレラ🍎歌ってみた
 
-グッズも在庫追加されたみたいなのでまだだよ〜！って人はぜひお迎えしてください✨
-https://www.neoporte-webshop.com/collections/un-knock-pre-sale`,
+Vocal:絲依とい     
+Illust:KEMARI様      
+Mix:はるっと様 
+movi:白涙様
 
-  date: "April 19, 2026",
+フルはこちら🌹
+https://www.youtube.com/watch?v=wjKaBLq3h2I`,
 
-  url: "https://x.com/itoitoi_Q/status/2045765327104147924",
+  date: "August 1, 2026",
 
-  images: [
-    "/images/pinned1.jpg",
-    "/images/pinned2.jpg",
+  url: "https://x.com/itoitoi_Q/status/2083513069498421298",
+
+  media: [
+    // {
+    //   type: "image",
+    //   src: "/images/pinned1.jpg",
+    // },
+    // {
+    //   type: "image",
+    //   src: "/images/pinned2.jpg",
+    // },
+
+    {
+      type: "video",
+      src: "/videos/pin-1aug.mp4",
+      poster: "/images/pin-thumb.jpg",
+    },
   ],
 };

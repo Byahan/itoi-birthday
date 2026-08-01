@@ -4,27 +4,27 @@ import { FaXTwitter } from "react-icons/fa6";
 
 import { pinnedPost } from "@/data/pinnedPost";
 
-function getImageGridClass(imageCount: number): string {
-  if (imageCount === 1) {
+function getMediaGridClass(mediaCount: number): string {
+  if (mediaCount === 1) {
     return "grid-cols-1";
   }
 
   return "grid-cols-2";
 }
 
-function getImageWrapperClass(
-  imageCount: number,
+function getMediaWrapperClass(
+  mediaCount: number,
   index: number,
 ): string {
-  if (imageCount === 1) {
+  if (mediaCount === 1) {
     return "aspect-video";
   }
 
-  if (imageCount === 2) {
+  if (mediaCount === 2) {
     return "aspect-[4/5]";
   }
 
-  if (imageCount === 3 && index === 0) {
+  if (mediaCount === 3 && index === 0) {
     return "row-span-2 aspect-auto min-h-[320px]";
   }
 
@@ -32,8 +32,8 @@ function getImageWrapperClass(
 }
 
 export default function PinnedPost() {
-  const images = pinnedPost.images ?? [];
-  const visibleImages = images.slice(0, 4);
+  const media = pinnedPost.media ?? [];
+  const visibleMedia = media.slice(0, 4);
 
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#cfe5f6] bg-[#f5f6ff]/90 shadow-[0_18px_50px_rgba(66,103,145,0.10)] transition duration-300 hover:-translate-y-1 hover:border-[#48a9f8]/30">
@@ -86,52 +86,76 @@ export default function PinnedPost() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t" />
         </div>
 
-        {/* Post images */}
-        {visibleImages.length > 0 && (
+        {/* Post media */}
+        {visibleMedia.length > 0 && (
           <div
-            className={`mt-5 grid overflow-hidden rounded-2xl border border-[#48a9f8]/10 ${getImageGridClass(
-              visibleImages.length,
+            className={`mt-5 grid overflow-hidden rounded-2xl border border-[#48a9f8]/10 ${getMediaGridClass(
+              visibleMedia.length,
             )}`}
           >
-            {visibleImages.map((image, index) => {
-              const remainingImages =
-                images.length > 4 && index === 3
-                  ? images.length - 4
+            {visibleMedia.map((item, index) => {
+              const remainingMedia =
+                media.length > 4 && index === 3
+                  ? media.length - 4
                   : 0;
 
+              const wrapperClass = getMediaWrapperClass(
+                visibleMedia.length,
+                index,
+              );
+
               return (
-                <a
-                  key={`${image}-${index}`}
-                  href={pinnedPost.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <div
+                  key={`${item.src}-${index}`}
                   className={`group relative overflow-hidden bg-[#f8fbff] ${
-                    visibleImages.length > 1
+                    visibleMedia.length > 1
                       ? "border border-[#48a9f8]/5"
                       : ""
-                  } ${getImageWrapperClass(
-                    visibleImages.length,
-                    index,
-                  )}`}
+                  } ${wrapperClass}`}
                 >
-                  <Image
-                    src={image}
-                    alt={`Pinned post image ${index + 1}`}
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 17vw"
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                  />
+                  {item.type === "video" ? (
+                    <video
+                      src={item.src}
+                      poster={item.poster}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="h-full w-full object-cover"
+                    >
+                      Your browser does not support video playback.
+                    </video>
+                  ) : (
+                    <a
+                      href={pinnedPost.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative block h-full w-full"
+                    >
+                      <Image
+                        src={item.src}
+                        alt={`Pinned post image ${index + 1}`}
+                        fill
+                        sizes="(max-width: 1024px) 50vw, 17vw"
+                        className="object-cover transition duration-500 group-hover:scale-105"
+                      />
 
-                  <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/20" />
-
-                  {remainingImages > 0 && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/55">
-                      <span className="text-2xl font-bold text-white">
-                        +{remainingImages}
-                      </span>
-                    </div>
+                      <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/20" />
+                    </a>
                   )}
-                </a>
+
+                  {remainingMedia > 0 && (
+                    <a
+                      href={pinnedPost.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 z-10 flex items-center justify-center bg-black/55"
+                    >
+                      <span className="text-2xl font-bold text-white">
+                        +{remainingMedia}
+                      </span>
+                    </a>
+                  )}
+                </div>
               );
             })}
           </div>
