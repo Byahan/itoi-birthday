@@ -31,6 +31,10 @@ export default function ProfilePage() {
       label: "profile.details.generation",
       value: profile.generation,
     },
+    {
+      label: "profile.details.dislike",
+      value: profile.dislike,
+    },
   ];
 
   return (

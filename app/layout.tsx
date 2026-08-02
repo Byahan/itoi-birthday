@@ -25,8 +25,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Itoi Toi",
-  description: "Itoi Toi fan website",
+  title: "Itoi Toi Fan Site",
+  description: "Itoi Toi fanmade website",
 };
 
 export default function RootLayout({

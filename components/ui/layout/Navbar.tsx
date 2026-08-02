@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/context/LanguageProvider";
 import LanguageSwitcher from "@/components/ui/language/LanguageSwitcher";
+import Image from "next/image";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -57,7 +58,14 @@ export default function Navbar() {
             className="order-2 whitespace-nowrap text-2xl font-black tracking-tight text-[#202b50] transition-colors hover:text-[#48a9f8] md:order-none md:text-3xl"
             onClick={() => setOpen(false)}
           >
-            Itoi Toi
+            <Image
+              src="/images/logo2.png"
+              alt="Itoi Toi"
+              width={3000}
+              height={3000}
+              priority
+              className="h-48 w-auto"
+            />
           </Link>
 
           {/* Centered desktop navigation */}

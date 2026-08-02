@@ -50,6 +50,7 @@ export const en = {
             fanName: "Fan Name",
             fanMark: "Fan Mark",
             generation: "Generation",
+            dislike: "Dislike",
         },
 
         greeting:

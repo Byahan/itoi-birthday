@@ -50,6 +50,7 @@ export const ja = {
             fanName: "ファンネーム",
             fanMark: "推しマーク",
             generation: "Generation",
+            dislike: "嫌いなもの",
         },
 
         greeting:

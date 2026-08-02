@@ -1,6 +1,6 @@
 export const profile = {
   name: "Itoi Toi",
-  japaneseName: "縁依 とい",
+  japaneseName: "絲依とい",
   role: "Virtual Streamer",
   agency: "NEO-PORTE",
   generation: "QUATTRO [Generation 2]",
@@ -10,6 +10,7 @@ export const profile = {
   height: "153 cm",
   fanName: "といあみ",
   oshiMark: "🫖🐾",
+  dislike: "🍌",
 
   costumes: [
     {
