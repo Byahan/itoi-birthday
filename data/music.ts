@@ -113,13 +113,6 @@ export const musicTracks: MusicTrack[] = [
     cover: "/images/music/kawaiidake.jpg",
   },
   {
-    id: "kawaiidake",
-    title: "かわいいだけじゃだめですか？",
-    artist: "Itoi Toi, Tentei Forte, Shirona Shizuku, Amane Amu",
-    audio: "/audio/kawaiidake.mp3",
-    cover: "/images/music/kawaiidake.jpg",
-  },
-  {
     id: "booo",
     title: "Booo!",
     artist: "Itoi Toi",
