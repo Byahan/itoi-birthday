@@ -38,6 +38,15 @@ export default function PinnedPost() {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#cfe5f6] bg-[#f5f6ff]/90 shadow-[0_18px_50px_rgba(66,103,145,0.10)] transition duration-300 hover:-translate-y-1 hover:border-[#48a9f8]/30">
       <div className="flex flex-1 flex-col p-6">
+        {/* Pinned label */}
+        <div className="mb-6 flex items-center gap-2 text-[#23b0ff]">
+          <Pin size={14} />
+
+          <p className="text-xs font-semibold uppercase tracking-[0.22em]">
+            Highlighted Post
+          </p>
+        </div>
+
         {/* Profile header */}
         <div className="flex items-start justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3">
@@ -66,15 +75,6 @@ export default function PinnedPost() {
             size={20}
             className="shrink-0 text-[#48a9f8]"
           />
-        </div>
-
-        {/* Pinned label */}
-        <div className="mt-5 flex items-center gap-2 text-[#23b0ff]">
-          <Pin size={14} />
-
-          <p className="text-xs font-semibold uppercase tracking-[0.22em]">
-            Pinned Post
-          </p>
         </div>
 
         {/* Post text */}

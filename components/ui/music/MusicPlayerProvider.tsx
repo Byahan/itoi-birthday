@@ -49,9 +49,14 @@ export function MusicPlayerProvider({
   const [volume, setVolumeState] = useState(0.8);
 
   const [shuffleEnabled, setShuffleEnabled] = useState(false);
+  const shuffleEnabledRef = useRef(false);
 
   function toggleShuffle() {
-    setShuffleEnabled((current) => !current);
+    setShuffleEnabled((current) => {
+      const next = !current;
+      shuffleEnabledRef.current = next;
+      return next;
+    });
   }
 
   function updateCurrentTrack(track: MusicTrack | null) {
@@ -104,7 +109,7 @@ function getAdjacentTrack(direction: "next" | "previous") {
     return musicTracks[0];
   }
 
-  if (shuffleEnabled && musicTracks.length > 1) {
+  if (shuffleEnabledRef.current && musicTracks.length > 1) {
     const availableTracks = musicTracks.filter(
       (track) => track.id !== activeTrack.id,
     );

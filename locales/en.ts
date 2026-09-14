@@ -5,7 +5,7 @@ export const en = {
         archives: "Archives",
         timeline: "Timeline",
         news: "News",
-        wishes: "Send Wishes",
+        wishes: "Send Message",
         about: "About",
     },
 
@@ -15,9 +15,9 @@ export const en = {
 
         description: {
             line1:
-            "This is an unofficial fan-made website dedicated to support Itoi Toi, a VTuber from Neo-Porte.",
+            "This is an unofficial fan-made website dedicated to Itoi Toi, a Virtual Youtuber from Neo-Porte agency.",
             line2:
-            "This website has no official affiliation with Neo-Porte, or any other affiliated companies, agencies, or organizations.",
+            "This website has no official affiliation with Neo-Porte, or any other affiliated companies, agencies, or organizations!",
         },
     },
 
@@ -88,15 +88,13 @@ export const en = {
 
     wishes: {
         hero: {
-            badge: "Limited Birthday Event",
-            title: "Birthday Wishes",
+            title: "Send a Message",
             description:
-            "Leave a special memory for Itoi Toi by writing a message or creating a drawing.",
+            "Write a message or draw something for Itoi Toi and the creator of this site.",
         },
 
         gallery: {
-            badge: "Community",
-            title: "Birthday Memories",
+            title: "Message Board",
             description:
             "Approved messages and drawings will appear together here.",
         },
