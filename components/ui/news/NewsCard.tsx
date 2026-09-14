@@ -175,7 +175,7 @@ export default function NewsCard({
       </header>
 
       {post.text && (
-        <p className="mt-4 whitespace-pre-wrap text-sm leading-7 text-slate-700">
+        <p className="mt-4 line-clamp-5 whitespace-pre-wrap text-sm leading-7 text-slate-700">
           {post.text}
         </p>
       )}
