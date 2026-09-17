@@ -1,8 +1,40 @@
 import NewsCard from "@/components/ui/news/NewsCard";
+import Pagination from "@/components/ui/archives/Pagination";
 import { getNewsPosts } from "@/lib/news";
 
-export default async function NewsPage() {
+const POSTS_PER_PAGE = 9;
+
+interface NewsPageProps {
+  searchParams: Promise<{
+    page?: string;
+  }>;
+}
+
+export default async function NewsPage({
+  searchParams,
+}: NewsPageProps) {
   const posts = await getNewsPosts();
+
+  const params = await searchParams;
+
+  const requestedPage = Number.parseInt(params.page ?? "1", 10);
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(posts.length / POSTS_PER_PAGE),
+  );
+
+  const currentPage = Math.min(
+    Math.max(Number.isNaN(requestedPage) ? 1 : requestedPage, 1),
+    totalPages,
+  );
+
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+
+  const currentPosts = posts.slice(
+    startIndex,
+    startIndex + POSTS_PER_PAGE,
+  );
 
   return (
     <main className="min-h-screen px-5 py-16">
@@ -21,14 +53,21 @@ export default async function NewsPage() {
             </p>
           </div>
         ) : (
-          <div className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {posts.map((post) => (
-              <NewsCard
-                key={post.id}
-                post={post}
-              />
-            ))}
-          </div>
+          <>
+            <div className="grid items-start gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {currentPosts.map((post) => (
+                <NewsCard
+                  key={post.id}
+                  post={post}
+                />
+              ))}
+            </div>
+
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+            />
+          </>
         )}
       </div>
     </main>

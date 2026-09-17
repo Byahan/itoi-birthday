@@ -120,7 +120,9 @@ export default async function ProfileTimeline() {
                           src={mediaUrl}
                           alt={event.titleEn}
                           loading="lazy"
-                          className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
+                          className={`h-full w-full ${
+                            event.youtubeUrl ? "object-cover" : "object-contain"
+                          } transition duration-300 group-hover:scale-105`}
                         />
                     </div>
                     )}
@@ -158,7 +160,7 @@ export default async function ProfileTimeline() {
                     )}
 
                     {destinationUrl && (
-                        <span className="mt-3 inline-flex text-sm font-semibold text-[#318ee8]">
+                        <span className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#23ceff]/20 bg-[#f3f9ff]/70 px-5 text-sm font-semibold text-[#23a7ff] transition hover:border-[#23baff]/40 hover:bg-[#62d5ff]/15 hover:text-[#239dff]">
                         View →
                         </span>
                     )}

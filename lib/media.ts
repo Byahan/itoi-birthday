@@ -11,7 +11,7 @@ export function getGoogleDriveImageUrl(url: string): string {
     return url;
   }
 
-  return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1600`;
+  return `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`;
 }
 
 export function getYouTubeVideoId(url: string): string | null {

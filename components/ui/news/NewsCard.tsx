@@ -134,7 +134,7 @@ function NewsMediaGrid({
   }
 
   return (
-    <div className="mt-4 grid aspect-video grid-cols-2 grid-rows-2 gap-1 overflow-hidden rounded-2xl border border-slate-200 bg-slate-200">
+    <div className="mt-4 grid aspect-[4/3] grid-cols-2 grid-rows-2 gap-1 overflow-hidden rounded-3xl border border-slate-300 bg-slate-200">
       {media.map((item, index) => (
         <MediaItem
           key={`${item.type}-${index}`}
@@ -154,7 +154,7 @@ export default function NewsCard({
     : "/images/default-profile.png";
 
   return (
-    <article className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+    <article className="flex h-[590px] flex-col rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
       <header className="flex items-center gap-3">
         <img
           src={profileImage}
@@ -175,7 +175,7 @@ export default function NewsCard({
       </header>
 
       {post.text && (
-        <p className="mt-4 line-clamp-5 whitespace-pre-wrap text-sm leading-7 text-slate-700">
+        <p className="mt-4 line-clamp-6 whitespace-pre-wrap text-sm leading-7 text-slate-700">
           {post.text}
         </p>
       )}
@@ -192,7 +192,7 @@ export default function NewsCard({
             href={post.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 transition hover:text-slate-950"
+            className="mt-4 inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#23ceff]/20 bg-[#f3f9ff]/70 px-5 text-sm font-semibold text-[#23a7ff] transition hover:border-[#23baff]/40 hover:bg-[#62d5ff]/15 hover:text-[#239dff]"
           >
             View post
             <ExternalLink className="h-4 w-4" />
