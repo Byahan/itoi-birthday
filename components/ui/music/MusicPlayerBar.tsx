@@ -66,6 +66,7 @@ export default function MusicPlayerBar() {
                 alt={currentTrack.title}
                 fill
                 sizes="48px"
+                unoptimized
                 className="object-cover"
               />
             </div>

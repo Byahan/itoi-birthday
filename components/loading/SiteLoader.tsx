@@ -44,6 +44,9 @@ export default function SiteLoader() {
         {/* Soft blue glow */}
         <div className="absolute left-1/2 top-1/2 -z-10 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#48a9f8]/20 blur-[90px]" />
 
+        <p className="mt-6 text-xs font-semibold tracking-[0.2em] text-[#a0a9bb]">
+          Art by @Indri Mae (Facebook)
+        </p>
         {/* Itoi sticker */}
         {sticker && (
           <img
