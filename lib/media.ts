@@ -52,7 +52,7 @@ export function getYouTubeThumbnail(url: string): string | null {
   const videoId = getYouTubeVideoId(url);
 
   return videoId
-  ? `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`
+  ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
   : null;
 }
 
