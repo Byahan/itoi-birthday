@@ -41,6 +41,7 @@ export default function FeaturedVideo() {
             alt={featuredVideo.title}
             fill
             sizes="(max-width: 1024px) 100vw, 33vw"
+            unoptimized
             className="object-contain p-3 transition duration-500 group-hover:scale-105"
           />
 

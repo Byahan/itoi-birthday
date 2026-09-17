@@ -321,3 +321,33 @@ body {
     -webkit-mask-image: none;
   }
 }
+
+@keyframes itoi-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+.animate-itoi-float {
+  animation: itoi-float 2s ease-in-out infinite;
+}
+
+@keyframes loading-dots {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.loading-dots {
+  animation: loading-dots 1.2s ease-in-out infinite;
+}

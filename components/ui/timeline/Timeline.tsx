@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   CalendarDays,
   Flag,
@@ -117,12 +116,11 @@ export default async function ProfileTimeline() {
                     {/* Small image above the text */}
                     {mediaUrl && (
                     <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-2xl bg-[#f3f9ff]">
-                        <Image
-                        src={mediaUrl}
-                        alt={event.titleEn}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 480px"
-                        className="object-contain transition duration-300 group-hover:scale-105"
+                        <img
+                          src={mediaUrl}
+                          alt={event.titleEn}
+                          loading="lazy"
+                          className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
                         />
                     </div>
                     )}

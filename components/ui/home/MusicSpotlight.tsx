@@ -62,6 +62,7 @@ export default function MusicSpotlight() {
           alt={displayTrack.title}
           fill
           sizes="(max-width:1024px) 100vw, 400px"
+          unoptimized
           className="object-cover transition duration-500"
         />
       </div>
