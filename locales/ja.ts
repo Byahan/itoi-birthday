@@ -5,7 +5,7 @@ export const ja = {
         archives: "Archives",
         timeline: "Timeline",
         news: "News",
-        wishes: "Send Wishes",
+        wishes: "Send Message",
         about: "About",
     },
 
@@ -231,9 +231,9 @@ export const ja = {
         newsDescription:
             "絲依といさんに関する Neo-Porte公式X のお知らせを、デビュー時から掲載しています。\n✦ 投稿は新しい順に表示されています。今後、並び替え機能を追加する予定です。",
 
-        wishes: "Send Wishes",
+        wishes: "Send Message",
         wishesDescription:
-            "お祝いメッセージやイラストを投稿できます。承認された投稿はサイト上で公開されます。\n✦ 投稿内容は公開前に手動で確認しています。不適切な内容の投稿はご遠慮ください。",
+            "メッセージやイラストを投稿できます。承認された投稿はサイト上で公開されます。\n✦ 投稿内容は公開前に手動で確認しています。不適切な内容の投稿はご遠慮ください。",
 
         projectDescription: {
             projectDescription1:
