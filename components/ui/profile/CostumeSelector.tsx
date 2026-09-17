@@ -48,6 +48,7 @@ export default function CostumeSelector() {
                   fill
                   sizes="140px"
                   className="object-contain"
+                  unoptimized
                 />
               </div>
 

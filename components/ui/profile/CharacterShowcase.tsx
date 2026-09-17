@@ -24,6 +24,7 @@ export default function CharacterShowcase() {
           width={520}
           height={760}
           priority
+          unoptimized
           className={`relative z-10 h-auto w-full object-contain transition-all duration-300 ease-out ${
             visible
               ? "scale-100 opacity-100"
