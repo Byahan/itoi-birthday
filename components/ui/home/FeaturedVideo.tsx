@@ -42,7 +42,7 @@ export default function FeaturedVideo() {
             fill
             sizes="(max-width: 1024px) 100vw, 33vw"
             unoptimized
-            className="object-contain p-3 transition duration-500 group-hover:scale-105"
+            className="object-cover transition duration-500 group-hover:scale-105"
           />
 
           <div className="absolute inset-0 bg-black/20 transition group-hover:bg-black/35" />

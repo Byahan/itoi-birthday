@@ -31,6 +31,31 @@ function getMediaWrapperClass(
   return "aspect-square";
 }
 
+function renderTextWithLinks(text: string) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+  return text.split(urlRegex).map((part, index) => {
+    if (
+      part.startsWith("http://") ||
+      part.startsWith("https://")
+    ) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#23a7ff] underline decoration-[#23a7ff]/40 underline-offset-2 transition hover:text-[#318ee8] hover:decoration-[#318ee8]"
+        >
+          {part}
+        </a>
+      );
+    }
+
+    return <span key={index}>{part}</span>;
+  });
+}
+
 export default function PinnedPost() {
   const media = pinnedPost.media ?? [];
   const visibleMedia = media.slice(0, 4);
@@ -78,9 +103,9 @@ export default function PinnedPost() {
         </div>
 
         {/* Post text */}
-        <div className="relative mt-4 max-h-[250px] overflow-hidden">
+        <div className="relative mt-4 max-h-[500px] overflow-hidden">
           <p className="whitespace-pre-line text-sm leading-7 text-[#394360]">
-            {pinnedPost.text}
+            {renderTextWithLinks(pinnedPost.text)}
           </p>
 
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t" />
@@ -135,8 +160,8 @@ export default function PinnedPost() {
                         src={item.src}
                         alt={`Pinned post image ${index + 1}`}
                         fill
-                        sizes="(max-width: 1024px) 50vw, 17vw"
-                        className="object-cover transition duration-500 group-hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-contain transition duration-500 group-hover:scale-105"
                       />
 
                       <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/20" />

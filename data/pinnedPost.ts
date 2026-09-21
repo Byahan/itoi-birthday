@@ -24,19 +24,26 @@ export const pinnedPost: PinnedPostData = {
   username: "@itoitoi_Q",
   profileImage: "/images/itoi-profile.jpg",
 
-  text: `ロミオとシンデレラ🍎歌ってみた
+  text: `#ネオポルテ_ContreJour
 
-Vocal:絲依とい     
-Illust:KEMARI様      
-Mix:はるっと様 
-movi:白涙様
+年末ライブのキービジュアル公開されました！
+どうですか？かわいいですか？
+１２月２９日のライブで待ってるよ～～～✨
 
-フルはこちら🌹
-https://www.youtube.com/watch?v=wjKaBLq3h2I`,
+------------------------------------------------
 
-  date: "August 1, 2026",
+◇特設サイト
+https://event.neo-porte.jp/2026-event/contrejour/
 
-  url: "https://x.com/itoitoi_Q/status/2083513069498421298",
+◇チケット販売はこちら！（最速先行は23日23時59分まで）
+ https://t.pia.jp/pia/event/event.do?eventBundleCd=b2671046
+
+◇グッズ受注受付中（10月1日24時まで）
+https://neoporte-webshop.com/collections/contre-jour-pre-sale`,
+
+  date: "September 16, 2026",
+
+  url: "https://x.com/itoitoi_Q/status/2100132582579204510",
 
   media: [
     // {
@@ -49,9 +56,8 @@ https://www.youtube.com/watch?v=wjKaBLq3h2I`,
     // },
 
     {
-      type: "video",
-      src: "/videos/pin-1aug.mp4",
-      poster: "/images/pin-thumb.jpg",
+      type: "image",
+      src: "/images/pin-post2.jpg",
     },
   ],
 };
